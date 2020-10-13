@@ -1,0 +1,24 @@
+{
+  "name": "scroll-shadow-element",
+  "version": "0.1.0",
+  "description": "Extends a scrollable element with a scroll shadow effect.",
+  "main": "scroll-shadow-element.js",
+  "module": "scroll-shadow-element.js",
+  "repository": "ingmarh/scroll-shadow-element",
+  "scripts": {
+    "start": "web-dev-server --open demo/ --watch",
+    "test": "wtr test/*.test.js --node-resolve --playwright --browsers chromium firefox",
+    "lint": "eslint *.js *.mjs test/",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "author": "Ingmar Hergst",
+  "license": "MIT",
+  "devDependencies": {
+    "@open-wc/testing": "^2.5.32",
+    "@web/dev-server": "^0.1.10",
+    "@web/test-runner": "^0.12.17",
+    "@web/test-runner-playwright": "^0.8.4",
+    "@web/test-runner-visual-regression": "^0.5.1",
+    "eslint": "^7.22.0"
+  }
+}
