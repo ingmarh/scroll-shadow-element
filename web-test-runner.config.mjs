@@ -3,7 +3,7 @@ import { visualRegressionPlugin } from '@web/test-runner-visual-regression/plugi
 export default {
   plugins: [
     visualRegressionPlugin({
-      baseDir: 'test/screenshots',
+      baseDir: process.env.CI ? 'test/ci/screenshots' : 'test/screenshots',
       update: process.argv.includes('--update-visual-baseline'),
     }),
   ],
