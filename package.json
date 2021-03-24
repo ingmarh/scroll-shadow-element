@@ -1,11 +1,13 @@
 {
   "name": "scroll-shadow-element",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Extends a scrollable element with a scroll shadow effect.",
   "main": "scroll-shadow-element.js",
   "module": "scroll-shadow-element.js",
   "repository": "ingmarh/scroll-shadow-element",
-  "files": ["scroll-shadow-element.js"],
+  "files": [
+    "scroll-shadow-element.js"
+  ],
   "scripts": {
     "start": "web-dev-server --open demo/ --watch",
     "test": "BROWSERS=$([ $CI ] && echo 'chromium webkit firefox' || echo 'chromium firefox') && wtr test/*.test.js --node-resolve --playwright --browsers $BROWSERS",
