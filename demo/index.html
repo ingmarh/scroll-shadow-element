@@ -2,20 +2,18 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Scroll shadow element demo</title>
   <meta name="viewport" content="width=device-width">
+  <title>Scroll shadow element demo</title>
   <script type="module" src="../scroll-shadow-element.js"></script>
-  <script type="module">
-    document.querySelector('.scrollbars-toggle').addEventListener('click', () => {
-      document.getElementById('demo').classList.toggle('hide-scrollbars')
-    })
-    document.querySelector('.horizontal-toggle').addEventListener('click', () => {
-      document.getElementById('demo').classList.toggle('horizontal')
-    })
-  </script>
   <style>
   * {
     box-sizing: border-box;
+  }
+  img {
+    display: block;
+  }
+  :focus:not(:focus-visible) {
+    outline: none;
   }
   body {
     display: flex;
@@ -52,8 +50,14 @@
     font-size: 16px;
   }
   button {
-    font: inherit;
-    margin: .4em 0;
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    padding: .3em .4em;
+    margin: 0;
+    background: none;
+    border: 1px solid #bbb;
+    border-radius: 4px;
   }
   #demo {
     width: 400px;
@@ -61,11 +65,10 @@
     max-width: 100vw;
     max-height: 400px;
     overflow: auto;
-    padding: 2em 2em 0 2em;
+    padding: 2em 2em 0;
     box-shadow: inset 1px 1px 4px #c8c8c8;
     border-radius: .4em;
     resize: horizontal;
-    background: #f7f7f7;
   }
   #demo.horizontal {
     width: 250px;
@@ -76,19 +79,37 @@
   .hide-scrollbars::-webkit-scrollbar {
     display: none;
   }
+  .actions {
+    display: flex;
+    margin-top: 1em;
+  }
+  .actions > :not(:last-child) {
+    margin-right: 1em;
+  }
   </style>
+  <script type="module">
+    function clickToggle(selector, className) {
+      document.querySelector(selector).addEventListener('click', () => {
+        document.getElementById('demo').classList.toggle(className)
+      })
+    }
+    clickToggle('.horizontal-toggle', 'horizontal')
+    clickToggle('.scrollbars-toggle', 'hide-scrollbars')
+  </script>
 </head>
 <body>
   <scroll-shadow>
     <main id="demo" class="hide-scrollbars">
       <h1>&lt;scroll-shadow&gt;</h1>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin commodo
-        quam nisi, eget porta risus feugiat eget. Mauris sed consectetur justo.
-        Ut ultrices pretium lobortis. Quisque rhoncus tincidunt blandit.
-        Integer consectetur condimentum cursus. Phasellus massa dui, mattis nec
-        pretium sodales, mattis non sapien. In iaculis augue nec vulputate
-        placerat. Vestibulum nec viverra nunc.
+        A custom element adding dynamic scroll shadows to the contained element.
+      </p>
+      <p>
+        Indicating scrollable content even when scroll bars aren’t displayed
+        (e.g. on touch input devices), or are only shown when scrolling (macOS default).
+      </p>
+      <p>
+        See the <a href="https://github.com/ingmarh/scroll-shadow-element">repository on GitHub</a>.
       </p>
       <form>
         <label>
@@ -100,6 +121,14 @@
           <input type="text" name="two" placeholder="Overlayed by scroll shadow">
         </label>
       </form>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin commodo
+        quam nisi, eget porta risus feugiat eget. Mauris sed consectetur justo.
+        Ut ultrices pretium lobortis. Quisque rhoncus tincidunt blandit.
+        Integer consectetur condimentum cursus. Phasellus massa dui, mattis nec
+        pretium sodales, mattis non sapien. In iaculis augue nec vulputate
+        placerat. Vestibulum nec viverra nunc.
+      </p>
       <p>
         Curabitur dapibus in mi quis fermentum. Nam mauris nisi, porta nec
         sollicitudin quis, fermentum nec elit. Cras sit amet ligula nisl.
@@ -144,13 +173,16 @@
         ultrices imperdiet, neque sapien porta augue, nec ullamcorper ante
         tortor quis urna. Ut at nunc vitae neque pharetra dignissim sed id
         metus. Nulla a imperdiet eros, ac accumsan ante. Pellentesque ac
-        pulvinar metus. Nullam accumsan dolor non ante pharetra ornare. 
+        pulvinar metus. Nullam accumsan dolor non ante pharetra ornare.
       </p>
     </main>
   </scroll-shadow>
-  <div>
-    <button type="button" class="scrollbars-toggle">Toggle scrollbars</button>
-    <button type="button" class="horizontal-toggle">Toggle horizontal</button>
+  <div class="actions">
+    <span><button type="button" class="horizontal-toggle">Toggle horizontal</button></span>
+    <span><button type="button" class="scrollbars-toggle">Toggle scrollbars</button></span>
+    <a href="https://github.com/ingmarh/scroll-shadow-element" aria-label="GitHub repository">
+      <img src="./gh-mark.png" alt="GitHub repository">
+    </a>
   </div>
 </body>
 </html>

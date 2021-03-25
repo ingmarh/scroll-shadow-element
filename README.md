@@ -6,6 +6,8 @@ A custom element adding dynamic scroll shadows to the contained element.
 This indicates scrollable content even when scroll bars aren’t displayed
 (e.g. on touch input devices), or are only shown when scrolling (macOS default).
 
+[See the demo](https://ingmarh.github.io/scroll-shadow-element/demo/).
+
 ## Installation
 
 ```bash
