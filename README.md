@@ -2,9 +2,6 @@
 
 > Extends a scrollable element with a scroll shadow effect.
 
-![CI status](https://github.com/ingmarh/scroll-shadow-element/actions/workflows/tests.yml/badge.svg)
-![Current version number](https://img.shields.io/npm/v/scroll-shadow-element?label=Version)
-
 A custom element adding dynamic scroll shadows to the contained element.
 This indicates scrollable content even when scroll bars aren’t displayed
 (e.g. on touch input devices), or are only shown when scrolling (macOS default).
@@ -78,7 +75,7 @@ browsers, you can configure your bundler to compile the package to ES5 syntax.
 technique with `background-attachment: local`][pure-css-alternative].
 
 The main motivation to create a custom element was to find a solution to have
-the shadows above the content and independent of the element‘s background. If
+the shadows above the content and independent of the element’s background. If
 you don’t have these requirements, the pure CSS technique might work for you
 too.
 
