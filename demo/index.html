@@ -88,13 +88,15 @@
   }
   </style>
   <script type="module">
+    const element = document.getElementById('demo')
     function clickToggle(selector, className) {
       document.querySelector(selector).addEventListener('click', () => {
-        document.getElementById('demo').classList.toggle(className)
+        element.classList.toggle(className)
       })
     }
     clickToggle('.horizontal-toggle', 'horizontal')
     clickToggle('.scrollbars-toggle', 'hide-scrollbars')
+    if (window.matchMedia('(pointer: coarse)').matches) element.classList.remove('hide-scrollbars')
   </script>
 </head>
 <body>
@@ -181,7 +183,7 @@
     <span><button type="button" class="horizontal-toggle">Toggle horizontal</button></span>
     <span><button type="button" class="scrollbars-toggle">Toggle scrollbars</button></span>
     <a href="https://github.com/ingmarh/scroll-shadow-element" aria-label="GitHub repository">
-      <img src="./gh-mark.png" alt="GitHub repository">
+      <img src="./gh-mark.png" width="32" height="32" alt="GitHub repository">
     </a>
   </div>
 </body>
