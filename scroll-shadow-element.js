@@ -32,6 +32,18 @@ const template = `
 const updaters = new WeakMap()
 
 export class ScrollShadowElement extends HTMLElement {
+  static get observedAttributes() {
+    return ['el']
+  }
+
+  get el() {
+    return this.getAttribute('el')
+  }
+
+  set el(value) {
+    this.setAttribute('el', value)
+  }
+
   constructor() {
     super()
     this.attachShadow({ mode: 'open' }).innerHTML = template
@@ -39,30 +51,46 @@ export class ScrollShadowElement extends HTMLElement {
   }
 
   connectedCallback() {
-    const slot = this.shadowRoot.querySelector('slot')
-    const start = () => updaters.get(this).start(slot.assignedElements()[0])
-
-    slot.addEventListener('slotchange', start)
-    start()
+    this.shadowRoot.querySelector('slot').addEventListener('slotchange', () => this.start())
+    this.start()
   }
 
   disconnectedCallback() {
     updaters.get(this).stop()
   }
+
+  attributeChangedCallback(_name, oldValue, newValue) {
+    if (oldValue !== newValue) {
+      this.scrollEl = newValue ? this.querySelector(newValue) : null
+      this.start()
+    }
+  }
+
+  start() {
+    const el = this.scrollEl || this.firstElementChild
+    updaters.get(this).start(el, this.scrollEl ? this.firstElementChild : null)
+  }
 }
 
 class Updater {
   constructor(targetElement) {
-    this.scheduleUpdate = throttle(this.update.bind(this, targetElement, getComputedStyle(targetElement)))
-    this.resizeObserver = new ResizeObserver(this.scheduleUpdate)
+    this.scheduleUpdate = throttle(() => this.update(targetElement, getComputedStyle(targetElement)))
+    this.resizeObserver = new ResizeObserver(() => {
+      this.scheduleUpdate()
+      if (this.rootElement) this.updateOffsets(targetElement)
+    })
   }
 
-  start(element) {
+  start(element, rootElement) {
     if (this.element) this.stop()
     if (element) {
       element.addEventListener('scroll', this.scheduleUpdate)
       this.resizeObserver.observe(element)
       this.element = element
+    }
+    if (rootElement) {
+      this.resizeObserver.observe(rootElement)
+      this.rootElement = rootElement
     }
   }
 
@@ -71,6 +99,10 @@ class Updater {
     this.element.removeEventListener('scroll', this.scheduleUpdate)
     this.resizeObserver.unobserve(this.element)
     this.element = null
+    if (this.rootElement) {
+      this.resizeObserver.unobserve(this.rootElement)
+      this.rootElement = null
+    }
   }
 
   update(targetElement, style) {
@@ -90,6 +122,16 @@ class Updater {
         `--${position}`,
         `${scroll[position] > maxSize ? maxSize : scroll[position]}px`
       )
+    }
+  }
+
+  updateOffsets(targetElement) {
+    const clientRect = this.element.getBoundingClientRect()
+    const rootClientRect = this.rootElement.getBoundingClientRect()
+
+    for (const position of ['top', 'bottom', 'left', 'right']) {
+      const offset = Math.abs(clientRect[position] - rootClientRect[position])
+      if (offset) targetElement.style.setProperty(position, `${offset}px`)
     }
   }
 }

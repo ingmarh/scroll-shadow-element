@@ -1,5 +1,6 @@
 import { render } from './utils'
 import { visualDiff } from '@web/test-runner-visual-regression'
+import { html, fixture, expect, elementUpdated } from '@open-wc/testing'
 
 import '../scroll-shadow-element.js'
 
@@ -47,5 +48,54 @@ describe('scroll shadow element', () => {
 
     scrollEl.scrollTop = 200
     await visualDiff(el, 'shadow-top20-bottom20')
+  })
+
+  it('should be possible to use a child element, like tbody', async () => {
+    const el = await fixture(
+      html`
+        <scroll-shadow el="tbody">
+          <table>
+            <thead style="display:block">
+              <tr>
+                <th style="width:10vw">User ID</th>
+                <th style="width:10vw">Full name</th>
+              </tr>
+            </thead>
+            <tbody style="display:block;height:70px;overflow-x:auto">
+              <tr>
+                <td style="width:10vw">1</td>
+                <td style="width:10vw">John Doe</td>
+              </tr>
+              <tr>
+                <td style="width:10vw">2</td>
+                <td style="width:10vw">Jane Doe</td>
+              </tr>
+              <tr>
+                <td style="width:10vw">3</td>
+                <td style="width:10vw">Carl Example</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2" style="width:20vw">Only tbody will have scroll shadows.</td>
+              </tr>
+            </tfoot>
+          </table>
+        </scroll-shadow>
+      `
+    )
+
+    el.querySelector('tbody').scrollTop = 10
+    await visualDiff(el, 'tbody')
+  })
+
+  it('should be possible to set the el attribute', async () => {
+    const el = await fixture('<scroll-shadow><p>Content</p></scroll-shadow>')
+    expect(el.el).to.equal(null)
+
+    el.el = 'tbody'
+    await elementUpdated(el)
+    expect(el.el).to.equal('tbody')
+    expect(el).dom.to.equal('<scroll-shadow el="tbody"><p>Content</p></scroll-shadow>')
   })
 })

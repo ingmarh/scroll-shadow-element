@@ -16,7 +16,7 @@ jobs:
         run: npm ci
       - name: Run lint checks
         run: npm run lint
-      - name: Run visual regression tests
+      - name: Run tests
         run: npm test
       - name: Upload artifacts
         uses: actions/upload-artifact@v2

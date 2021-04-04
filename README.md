@@ -42,6 +42,48 @@ shadows when scrollable. For example:
 </scroll-shadow>
 ```
 
+If you can‘t directly wrap your element, you can target a child element with a
+CSS selector using the `el` attribute. This is only recommended for `<tbody>`
+in a `<table>`, where only specific elements are permitted as a direct child.
+
+<details><summary>Example usage for table body</summary>
+
+```html
+<scroll-shadow el="tbody">
+  <table>
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Full name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>John Doe</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Jane Doe</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Carl Example</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">Only tbody will have scroll shadows.</td>
+      </tr>
+    </tfoot>
+  </table>
+</scroll-shadow>
+```
+
+</details>
+
+
+
 ## Configuration
 
 Use CSS Custom Properties to change the appearance.
@@ -91,7 +133,7 @@ npm start
 # Create visual regression test baseline images for development
 npm test -- --update-visual-baseline
 
-# Run visual regression tests
+# Run tests
 npm test
 ```
 
