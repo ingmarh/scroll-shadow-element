@@ -4,9 +4,11 @@
   "description": "Extends a scrollable element with a scroll shadow effect.",
   "main": "scroll-shadow-element.js",
   "module": "scroll-shadow-element.js",
+  "types": "types.d.ts",
   "repository": "ingmarh/scroll-shadow-element",
   "files": [
-    "scroll-shadow-element.js"
+    "scroll-shadow-element.js",
+    "types.d.ts"
   ],
   "scripts": {
     "start": "web-dev-server --open demo/ --watch",
