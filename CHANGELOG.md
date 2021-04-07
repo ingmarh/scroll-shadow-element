@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - `el` attribute to enable `tbody` use case ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/6b424de))
 - TypeScript definitions ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/871dfa8))
 
-## [1.0.0] (March 3, 2021)
+## [1.0.0] (March 24, 2021)
 
 Initial release
 
