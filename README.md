@@ -18,8 +18,13 @@ npm install scroll-shadow-element
 yarn add scroll-shadow-element
 ```
 
-`<scroll-shadow>` is distributed as an ES module. Import the module, or load it
-with a script tag:
+Or directly load from a CDN, e.g.: `https://unpkg.com/scroll-shadow-element`
+
+## Usage
+
+### Import
+
+Import the module, or load it with a script tag.
 
 ```js
 import 'scroll-shadow-element'
@@ -29,9 +34,7 @@ import 'scroll-shadow-element'
 <script type="module" src="./node_modules/scroll-shadow-element/scroll-shadow-element.js"></script>
 ```
 
-You can also use a CDN, e.g. `https://unpkg.com/scroll-shadow-element`.
-
-## Usage
+### Use
 
 Use `<scroll-shadow>` on any element. It will dynamically add scroll
 shadows when scrollable. For example:
@@ -105,8 +108,8 @@ scroll-shadow {
 `<scroll-shadow>` works in all browsers that support [Custom
 Elements][custom-elementsv1] and [Resize Observer][resizeobserver].
 
-It checks whether these features are supported in the browser before defining
-the custom element.
+Support for these features is checked before defining the custom element in the
+browser.
 
 `<scroll-shadow>` is written with ES6 syntax. If you need to support older
 browsers, you can configure your bundler to compile the package to ES5 syntax.
