@@ -1,7 +1,7 @@
 import { html, fixture } from '@open-wc/testing'
 
 export async function render(options = { horizontal: false, size: null }) {
-  const el = await fixture(
+  const rootEl = await fixture(
     html`
       <scroll-shadow style="
         --scroll-shadow-top: radial-gradient(farthest-side at 50% 0%, yellow, rgba(0,0,0,0));
@@ -68,7 +68,7 @@ export async function render(options = { horizontal: false, size: null }) {
               amet ultrices imperdiet, neque sapien porta augue, nec ullamcorper
               ante tortor quis urna. Ut at nunc vitae neque pharetra dignissim sed
               id metus. Nulla a imperdiet eros, ac accumsan ante. Pellentesque ac
-              pulvinar metus. Nullam accumsan dolor non ante pharetra ornare. 
+              pulvinar metus. Nullam accumsan dolor non ante pharetra ornare.
             </p>
           </div>
         </div>
@@ -76,5 +76,45 @@ export async function render(options = { horizontal: false, size: null }) {
     `
   )
 
-  return { el, scrollEl: el.querySelector('div') }
+  return { rootEl, el: rootEl.querySelector('div') }
+}
+
+export async function renderTable(options = { el: null, overflowingContainer: false }) {
+  const rootEl = await fixture(
+    html`
+      <scroll-shadow el="${options.el}">
+        <div style="${options.overflowingContainer ? 'width:80px;overflow:auto' : ''}">
+          <table style="${options.overflowingContainer ? 'width:120px' : ''}">
+            <thead style="display:block">
+              <tr>
+                <th style="width:10vw">User ID</th>
+                <th style="width:10vw">Full name</th>
+              </tr>
+            </thead>
+            <tbody style="display:block;height:70px;overflow-x:auto">
+              <tr>
+                <td style="width:10vw">1</td>
+                <td style="width:10vw">John Doe</td>
+              </tr>
+              <tr>
+                <td style="width:10vw">2</td>
+                <td style="width:10vw">Jane Doe</td>
+              </tr>
+              <tr>
+                <td style="width:10vw">3</td>
+                <td style="width:10vw">Carl Example</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2" style="width:20vw">Only tbody will have scroll shadows.</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </scroll-shadow>
+    `
+  )
+
+  return { rootEl, el: rootEl.querySelector('tbody') }
 }

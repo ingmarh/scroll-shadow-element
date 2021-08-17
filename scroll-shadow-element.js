@@ -30,6 +30,7 @@ const template = `
 `
 
 const updaters = new WeakMap()
+const positions = ['top', 'bottom', 'left', 'right']
 
 export class ScrollShadowElement extends HTMLElement {
   static get observedAttributes() {
@@ -77,7 +78,7 @@ class Updater {
     this.scheduleUpdate = throttle(() => this.update(targetElement, getComputedStyle(targetElement)))
     this.resizeObserver = new ResizeObserver(() => {
       this.scheduleUpdate()
-      if (this.rootElement) this.updateOffsets(targetElement)
+      if (this.rootElement) this.updateInset(targetElement)
     })
   }
 
@@ -110,28 +111,30 @@ class Updater {
 
     const el = this.element
     const maxSize = Number(style.getPropertyValue('--scroll-shadow-size')) || 14
-    const scroll = {
-      top: el.scrollTop,
-      bottom: Math.max(el.scrollHeight - el.offsetHeight - el.scrollTop, 0),
-      left: el.scrollLeft,
-      right: Math.max(el.scrollWidth - el.offsetWidth - el.scrollLeft, 0),
+    const sizes = {
+      top: Math.min(el.scrollTop, maxSize),
+      bottom: Math.min(Math.max(el.scrollHeight - el.offsetHeight - el.scrollTop, 0), maxSize),
+      left: Math.min(el.scrollLeft, maxSize),
+      right: Math.min(Math.max(el.scrollWidth - el.offsetWidth - el.scrollLeft, 0), maxSize),
     }
 
-    for (const position of ['top', 'bottom', 'left', 'right']) {
-      targetElement.style.setProperty(
-        `--${position}`,
-        `${scroll[position] > maxSize ? maxSize : scroll[position]}px`
-      )
+    for (const position of positions) {
+      targetElement.style.setProperty(`--${position}`, `${sizes[position]}px`)
     }
   }
 
-  updateOffsets(targetElement) {
+  updateInset(targetElement) {
     const clientRect = this.element.getBoundingClientRect()
     const rootClientRect = this.rootElement.getBoundingClientRect()
+    const inset = {
+      top: Math.max(0, clientRect.top - rootClientRect.top),
+      bottom: Math.max(0, rootClientRect.bottom - clientRect.bottom),
+      left: Math.max(0, clientRect.left - rootClientRect.left),
+      right: Math.max(0, rootClientRect.right - clientRect.right),
+    }
 
-    for (const position of ['top', 'bottom', 'left', 'right']) {
-      const offset = Math.abs(clientRect[position] - rootClientRect[position])
-      if (offset) targetElement.style.setProperty(position, `${offset}px`)
+    for (const position of positions) {
+      targetElement.style.setProperty(position, `${inset[position]}px`)
     }
   }
 }
