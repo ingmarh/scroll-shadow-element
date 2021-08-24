@@ -19,11 +19,11 @@
   "author": "Ingmar Hergst",
   "license": "MIT",
   "devDependencies": {
-    "@open-wc/testing": "^2.5.32",
-    "@web/dev-server": "^0.1.10",
-    "@web/test-runner": "^0.12.17",
-    "@web/test-runner-playwright": "^0.8.4",
-    "@web/test-runner-visual-regression": "^0.5.1",
-    "eslint": "^7.22.0"
+    "@open-wc/testing": "^2.5.33",
+    "@web/dev-server": "^0.1.22",
+    "@web/test-runner": "^0.13.16",
+    "@web/test-runner-playwright": "^0.8.8",
+    "@web/test-runner-visual-regression": "^0.6.2",
+    "eslint": "^7.32.0"
   }
 }
