@@ -1,6 +1,6 @@
 {
   "name": "scroll-shadow-element",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Extends a scrollable element with a scroll shadow effect.",
   "main": "scroll-shadow-element.js",
   "module": "scroll-shadow-element.js",
