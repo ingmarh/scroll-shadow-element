@@ -107,9 +107,9 @@ class Updater {
 
     const maxSize = Number(computedStyle.getPropertyValue('--scroll-shadow-size') || 14)
     const style = {
-      '--top': clamp(el.scrollTop, maxSize),
+      '--top': clamp(el.scrollTop, 0, maxSize),
       '--bottom': clamp(el.scrollHeight - el.offsetHeight - el.scrollTop, 0, maxSize),
-      '--left': clamp(el.scrollLeft, maxSize),
+      '--left': clamp(el.scrollLeft, 0, maxSize),
       '--right': clamp(el.scrollWidth - el.offsetWidth - el.scrollLeft, 0, maxSize),
     }
 
@@ -133,7 +133,6 @@ class Updater {
 
 function clamp(num, min, max) {
   if (min === undefined) return num > 0 ? num : 0
-  if (max === undefined) return num > min ? min : num
   if (num < min) return min
   if (num > max) return max
   return num
