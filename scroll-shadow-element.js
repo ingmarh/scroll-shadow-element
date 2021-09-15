@@ -30,7 +30,6 @@ const template = `
 `
 
 const updaters = new WeakMap()
-const positions = ['top', 'bottom', 'left', 'right']
 
 export class ScrollShadowElement extends HTMLElement {
   static get observedAttributes() {
@@ -75,68 +74,69 @@ export class ScrollShadowElement extends HTMLElement {
 
 class Updater {
   constructor(targetElement) {
-    this.scheduleUpdate = throttle(() => this.update(targetElement, getComputedStyle(targetElement)))
-    this.resizeObserver = new ResizeObserver(() => {
-      this.scheduleUpdate()
-      if (this.rootElement) this.updateInset(targetElement)
-    })
+    const update = this.update.bind(this, targetElement, getComputedStyle(targetElement))
+
+    this.handleScroll = throttle(update)
+    this.resizeObserver = new ResizeObserver(update)
   }
 
   start(element, rootElement) {
-    if (this.element) this.stop()
+    if (this.el) this.stop()
     if (element) {
-      element.addEventListener('scroll', this.scheduleUpdate)
+      element.addEventListener('scroll', this.handleScroll)
       this.resizeObserver.observe(element)
-      this.element = element
+      this.el = element
     }
     if (rootElement) {
       this.resizeObserver.observe(rootElement)
-      this.rootElement = rootElement
+      this.rootEl = rootElement
     }
   }
 
   stop() {
-    if (!this.element) return
-    this.element.removeEventListener('scroll', this.scheduleUpdate)
-    this.resizeObserver.unobserve(this.element)
-    this.element = null
-    if (this.rootElement) {
-      this.resizeObserver.unobserve(this.rootElement)
-      this.rootElement = null
-    }
+    if (!this.el) return
+    this.el.removeEventListener('scroll', this.handleScroll)
+    this.resizeObserver.disconnect()
+    this.el = null
+    this.rootEl = null
   }
 
-  update(targetElement, style) {
-    if (!this.element) return
+  update(targetElement, computedStyle) {
+    const { el, rootEl } = this
+    if (!el) return
 
-    const el = this.element
-    const maxSize = Number(style.getPropertyValue('--scroll-shadow-size')) || 14
-    const sizes = {
-      top: Math.min(el.scrollTop, maxSize),
-      bottom: Math.min(Math.max(el.scrollHeight - el.offsetHeight - el.scrollTop, 0), maxSize),
-      left: Math.min(el.scrollLeft, maxSize),
-      right: Math.min(Math.max(el.scrollWidth - el.offsetWidth - el.scrollLeft, 0), maxSize),
+    const maxSize = Number(computedStyle.getPropertyValue('--scroll-shadow-size') || 14)
+    const style = {
+      '--top': clamp(el.scrollTop, maxSize),
+      '--bottom': clamp(el.scrollHeight - el.offsetHeight - el.scrollTop, 0, maxSize),
+      '--left': clamp(el.scrollLeft, maxSize),
+      '--right': clamp(el.scrollWidth - el.offsetWidth - el.scrollLeft, 0, maxSize),
     }
 
-    for (const position of positions) {
-      targetElement.style.setProperty(`--${position}`, `${sizes[position]}px`)
-    }
-  }
+    if (rootEl) {
+      const clientRect = el.getBoundingClientRect()
+      const rootClientRect = rootEl.getBoundingClientRect()
 
-  updateInset(targetElement) {
-    const clientRect = this.element.getBoundingClientRect()
-    const rootClientRect = this.rootElement.getBoundingClientRect()
-    const inset = {
-      top: Math.max(0, clientRect.top - rootClientRect.top),
-      bottom: Math.max(0, rootClientRect.bottom - clientRect.bottom),
-      left: Math.max(0, clientRect.left - rootClientRect.left),
-      right: Math.max(0, rootClientRect.right - clientRect.right),
+      Object.assign(style, {
+        top: clamp(clientRect.top - rootClientRect.top),
+        bottom: clamp(rootClientRect.bottom - clientRect.bottom),
+        left: clamp(clientRect.left - rootClientRect.left),
+        right: clamp(rootClientRect.right - clientRect.right),
+      })
     }
 
-    for (const position of positions) {
-      targetElement.style.setProperty(position, `${inset[position]}px`)
+    for (const key in style) {
+      targetElement.style.setProperty(key, `${style[key]}px`)
     }
   }
+}
+
+function clamp(num, min, max) {
+  if (min === undefined) return num > 0 ? num : 0
+  if (max === undefined) return num > min ? min : num
+  if (num < min) return min
+  if (num > max) return max
+  return num
 }
 
 function throttle(callback) {
