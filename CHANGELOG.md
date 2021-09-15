@@ -2,6 +2,14 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.2] (September 15, 2021)
+
+### Fixed
+- Glitch when momentum scrolling in Safari ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/45f2808))
+
+### Optimized
+- Optimize for minified and compressed file size ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/7a16465))
+
 ## [1.1.1] (August 24, 2021)
 
 ### Fixed
@@ -17,6 +25,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 Initial release
 
+[1.1.2]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.2
 [1.1.1]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.1
 [1.1.0]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.0
 [1.0.0]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.0.0
