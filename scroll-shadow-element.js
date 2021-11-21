@@ -2,7 +2,6 @@ const template = `
   <style>
   :host {
     display: inline-block;
-    contain: layout;
     position: relative;
   }
   :host([hidden]) {
