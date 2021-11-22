@@ -2,6 +2,14 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.3] (November 22, 2021)
+
+### Fixed
+- Remove use of CSS contain property ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/4c6142a))
+
+### Optimized
+- Save bytes when minified ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/3243c8c))
+
 ## [1.1.2] (September 15, 2021)
 
 ### Fixed
@@ -25,6 +33,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 Initial release
 
+[1.1.3]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.3
 [1.1.2]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.2
 [1.1.1]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.1
 [1.1.0]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.0
