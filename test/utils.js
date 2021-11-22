@@ -116,5 +116,5 @@ export async function renderTable(options = { el: null, overflowingContainer: fa
     `
   )
 
-  return { rootEl, el: rootEl.querySelector('tbody') }
+  return { rootEl, el: rootEl.querySelector(options.el) }
 }
