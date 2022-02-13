@@ -45,7 +45,7 @@ shadows when scrollable. For example:
 </scroll-shadow>
 ```
 
-If you can‘t directly wrap your element, you can target a child element with a
+If you can’t directly wrap your element, you can target a child element with a
 CSS selector using the `el` attribute. This is only recommended for `<tbody>`
 in a `<table>`, where only specific elements are permitted as a direct child.
 

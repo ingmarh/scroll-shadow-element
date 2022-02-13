@@ -8,8 +8,10 @@
   "repository": "ingmarh/scroll-shadow-element",
   "files": [
     "scroll-shadow-element.js",
-    "types.d.ts"
+    "types.d.ts",
+    "custom-elements.json"
   ],
+  "customElements": "custom-elements.json",
   "scripts": {
     "start": "web-dev-server --open demo/ --watch",
     "test": "BROWSERS=$([ $CI ] && echo 'chromium webkit firefox' || echo 'chromium firefox') && wtr test/*.test.js --node-resolve --playwright --browsers $BROWSERS",

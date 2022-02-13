@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "1.0.0",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "scroll-shadow-element.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "ScrollShadowElement",
+          "cssProperties": [
+            {
+              "description": "Sets the maximum size of the scroll indicators",
+              "name": "--scroll-shadow-size",
+              "syntax": "<integer>",
+              "default": "14"
+            },
+            {
+              "description": "Controls the appearance of the top scroll indicator",
+              "name": "--scroll-shadow-top",
+              "syntax": "none | <image>",
+              "default": "radial-gradient(farthest-side at 50% 0%, rgba(0,0,0,.2), rgba(0,0,0,0))"
+            },
+            {
+              "description": "Controls the appearance of the bottom scroll indicator",
+              "name": "--scroll-shadow-bottom",
+              "syntax": "none | <image>",
+              "default": "radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0))"
+            },
+            {
+              "description": "Controls the appearance of the left scroll indicator",
+              "name": "--scroll-shadow-left",
+              "syntax": "none | <image>",
+              "default": "radial-gradient(farthest-side at 0%, rgba(0,0,0,.2), rgba(0,0,0,0))"
+            },
+            {
+              "description": "Controls the appearance of the right scroll indicator",
+              "name": "--scroll-shadow-right",
+              "syntax": "none | <image>",
+              "default": "radial-gradient(farthest-side at 100%, rgba(0,0,0,.2), rgba(0,0,0,0))"
+            }
+          ],
+          "attributes": [
+            {
+              "description": "Can be used to target a child element with a CSS selector (e.g. tbody)",
+              "name": "el"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "description": "Can be used to target a child element with a CSS selector (e.g. tbody)",
+              "name": "el"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "tagName": "scroll-shadow",
+          "customElement": true,
+          "demos": [
+            {
+              "url": "https://ingmarh.github.io/scroll-shadow-element/demo/"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ScrollShadowElement",
+          "declaration": {
+            "name": "ScrollShadowElement",
+            "module": "scroll-shadow-element.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "scroll-shadow",
+          "declaration": {
+            "name": "ScrollShadowElement",
+            "module": "scroll-shadow-element.js"
+          }
+        }
+      ]
+    }
+  ]
+}
