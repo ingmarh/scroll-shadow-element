@@ -1,4 +1,4 @@
-import { ScrollShadowElement } from './scroll-shadow-element'
+import { ScrollShadowElement } from './ScrollShadowElement'
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -9,6 +9,7 @@ declare global {
     interface IntrinsicElements {
       'scroll-shadow': {
         el?: string
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         [prop: string]: any
       }
     }

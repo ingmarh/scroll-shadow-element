@@ -109,8 +109,14 @@
     height: 70px;
   }
   </style>
-  <script type="module" src="../scroll-shadow-element.js"></script>
   <script type="module">
+    const s = document.createElement('script')
+    s.type = 'module'
+    s.src = window.location.hostname === 'localhost'
+      ? '../src/index.ts'
+      : 'https://unpkg.com/scroll-shadow-element'
+    document.body.appendChild(s)
+
     function clickToggle(selector, className, target) {
       document.querySelector(selector).addEventListener('click', () => {
         document.querySelector(target).classList.toggle(className)

@@ -2,7 +2,7 @@ import { render, renderTable } from './utils'
 import { visualDiff } from '@web/test-runner-visual-regression'
 import { fixture, expect, elementUpdated } from '@open-wc/testing'
 
-import '../scroll-shadow-element.js'
+import '../src/index'
 
 describe('scroll shadow element', () => {
   it('should display vertical scroll shadows', async () => {

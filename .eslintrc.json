@@ -1,13 +1,12 @@
 {
-  "extends": "eslint:recommended",
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
   "env": {
-    "es2021": true,
+    "es2022": true,
     "browser": true,
     "node": true,
     "mocha": true
-  },
-  "parserOptions": {
-    "sourceType": "module"
   },
   "rules": {
     "semi": ["error", "never"],
