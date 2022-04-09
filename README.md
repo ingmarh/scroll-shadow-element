@@ -114,6 +114,27 @@ browser.
 `<scroll-shadow>` is written with ES6 syntax. If you need to support older
 browsers, you can configure your bundler to compile the package to ES5 syntax.
 
+## Using with Jest
+
+Depending on your configuration, you might see `SyntaxError: Unexpected token
+'export'` when using Jest. This is because [Jest doesn’t fully support ES
+modules][jest-esm]. There are a few hints in the Jest error output. One of them
+is to use ["moduleNameMapper"][jest-modulenamemapper].
+
+To stub the module out (probably not relevant for your tests) with
+"moduleNameMapper", you can use any empty module, or
+[`jest-transform-stub`][jest-transform-stub]:
+
+```json
+{
+  "jest": {
+    "moduleNameMapper": {
+      "^scroll-shadow-element$": "jest-transform-stub"
+    }
+  }
+}
+```
+
 ## Pure CSS alternative
 
 `<scroll-shadow>` is inspired by Lea Verou’s great [pure CSS scrolling shadows
@@ -147,3 +168,6 @@ Distributed under the terms of the MIT license. See [LICENSE](LICENSE) for detai
 [custom-elementsv1]: https://caniuse.com/custom-elementsv1
 [resizeobserver]: https://caniuse.com/resizeobserver
 [pure-css-alternative]: https://lea.verou.me/2012/04/background-attachment-local/
+[jest-esm]: https://jestjs.io/docs/ecmascript-modules
+[jest-modulenamemapper]: https://jestjs.io/docs/configuration#modulenamemapper-objectstring-string--arraystring
+[jest-transform-stub]: https://www.npmjs.com/package/jest-transform-stub
