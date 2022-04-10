@@ -3,7 +3,7 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "scroll-shadow-element.js",
+      "path": "dist/index.mjs",
       "declarations": [
         {
           "kind": "class",
@@ -71,7 +71,7 @@
           "name": "ScrollShadowElement",
           "declaration": {
             "name": "ScrollShadowElement",
-            "module": "scroll-shadow-element.js"
+            "module": "dist/index.mjs"
           }
         },
         {
@@ -79,7 +79,7 @@
           "name": "scroll-shadow",
           "declaration": {
             "name": "ScrollShadowElement",
-            "module": "scroll-shadow-element.js"
+            "module": "dist/index.mjs"
           }
         }
       ]
