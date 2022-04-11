@@ -4,10 +4,10 @@ export async function render(options = { horizontal: false, size: null }) {
   const rootEl = await fixture(
     html`
       <scroll-shadow style="
-        --scroll-shadow-top: radial-gradient(farthest-side at 50% 0%, yellow, rgba(0,0,0,0));
-        --scroll-shadow-bottom: radial-gradient(farthest-side at 50% 100%, yellow, rgba(0,0,0,0));
-        --scroll-shadow-left: radial-gradient(farthest-side at 0%, yellow, rgba(0,0,0,0));
-        --scroll-shadow-right: radial-gradient(farthest-side at 100%, yellow, rgba(0,0,0,0));
+        --scroll-shadow-top: radial-gradient(farthest-side at 50% 0%, yellow, #0000);
+        --scroll-shadow-bottom: radial-gradient(farthest-side at 50% 100%, yellow, #0000);
+        --scroll-shadow-left: radial-gradient(farthest-side at 0%, yellow, #0000);
+        --scroll-shadow-right: radial-gradient(farthest-side at 100%, yellow, #0000);
         ${options.size ? '--scroll-shadow-size:'+options.size : ''}
       ">
         <div style="width:400px;height:400px;padding:2em;overflow:auto">

@@ -17,13 +17,14 @@ const template = `
       right: 0;
       pointer-events: none;
       background:
-        var(--scroll-shadow-top, radial-gradient(farthest-side at 50% 0%, rgba(0,0,0,.2), rgba(0,0,0,0))) top/100% var(--top),
-        var(--scroll-shadow-bottom, radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0))) bottom/100% var(--bottom),
-        var(--scroll-shadow-left, radial-gradient(farthest-side at 0%, rgba(0,0,0,.2), rgba(0,0,0,0))) left/var(--left) 100%,
-        var(--scroll-shadow-right, radial-gradient(farthest-side at 100%, rgba(0,0,0,.2), rgba(0,0,0,0))) right/var(--right) 100%;
+        var(--scroll-shadow-top, radial-gradient(farthest-side at 50% 0%, #0003, #0000)) top / 100% var(--top),
+        var(--scroll-shadow-bottom, radial-gradient(farthest-side at 50% 100%, #0003, #0000)) bottom / 100% var(--bottom),
+        var(--scroll-shadow-left, radial-gradient(farthest-side at 0%, #0003, #0000)) left / var(--left) 100%,
+        var(--scroll-shadow-right, radial-gradient(farthest-side at 100%, #0003, #0000)) right / var(--right) 100%;
       background-repeat: no-repeat;
     }
   </style>
+
   <slot></slot>
   <s></s>
 `

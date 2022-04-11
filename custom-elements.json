@@ -19,25 +19,25 @@
               "description": "Controls the appearance of the top scroll indicator",
               "name": "--scroll-shadow-top",
               "syntax": "none | <image>",
-              "default": "radial-gradient(farthest-side at 50% 0%, rgba(0,0,0,.2), rgba(0,0,0,0))"
+              "default": "radial-gradient(farthest-side at 50% 0%, #0003, #0000)"
             },
             {
               "description": "Controls the appearance of the bottom scroll indicator",
               "name": "--scroll-shadow-bottom",
               "syntax": "none | <image>",
-              "default": "radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0))"
+              "default": "radial-gradient(farthest-side at 50% 100%, #0003, #0000)"
             },
             {
               "description": "Controls the appearance of the left scroll indicator",
               "name": "--scroll-shadow-left",
               "syntax": "none | <image>",
-              "default": "radial-gradient(farthest-side at 0%, rgba(0,0,0,.2), rgba(0,0,0,0))"
+              "default": "radial-gradient(farthest-side at 0%, #0003, #0000)"
             },
             {
               "description": "Controls the appearance of the right scroll indicator",
               "name": "--scroll-shadow-right",
               "syntax": "none | <image>",
-              "default": "radial-gradient(farthest-side at 100%, rgba(0,0,0,.2), rgba(0,0,0,0))"
+              "default": "radial-gradient(farthest-side at 100%, #0003, #0000)"
             }
           ],
           "attributes": [

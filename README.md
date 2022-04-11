@@ -96,10 +96,10 @@ Use CSS Custom Properties to change the appearance.
 scroll-shadow {
   display: inline-block;
   --scroll-shadow-size: 14;
-  --scroll-shadow-top: radial-gradient(farthest-side at 50% 0%, rgba(0,0,0,.2), rgba(0,0,0,0));
-  --scroll-shadow-bottom: radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0));
-  --scroll-shadow-left: radial-gradient(farthest-side at 0%, rgba(0,0,0,.2), rgba(0,0,0,0));
-  --scroll-shadow-right: radial-gradient(farthest-side at 100%, rgba(0,0,0,.2), rgba(0,0,0,0));
+  --scroll-shadow-top: radial-gradient(farthest-side at 50% 0%, #0003, #0000);
+  --scroll-shadow-bottom: radial-gradient(farthest-side at 50% 100%, #0003, #0000);
+  --scroll-shadow-left: radial-gradient(farthest-side at 0%, #0003, #0000);
+  --scroll-shadow-right: radial-gradient(farthest-side at 100%, #0003, #0000);
 }
 ```
 
