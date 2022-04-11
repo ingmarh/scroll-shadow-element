@@ -16,6 +16,7 @@
   "customElements": "./custom-elements.json",
   "files": [
     "dist/**",
+    "scroll-shadow-element.js",
     "custom-elements.json"
   ],
   "scripts": {
