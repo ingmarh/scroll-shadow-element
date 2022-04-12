@@ -2,42 +2,49 @@
 
 > Extends a scrollable element with a scroll shadow effect.
 
-A custom element adding dynamic scroll shadows to the contained element.
-This indicates scrollable content even when scroll bars aren’t displayed
-(e.g. on touch input devices), or are only shown when scrolling (macOS default).
+A small custom element adding dynamic scroll shadows to the contained element,
+indicating scrollable content even when scroll bars aren’t displayed.
 
-[See the demo](https://ingmarh.github.io/scroll-shadow-element/demo/).
+🔎 [See the demo](https://ingmarh.github.io/scroll-shadow-element/demo/)
 
 ## Installation
 
 ```bash
-# With npm:
 npm install scroll-shadow-element
-
-# With Yarn:
-yarn add scroll-shadow-element
 ```
 
-Or directly load from a CDN, e.g.: `https://unpkg.com/scroll-shadow-element`
+<details><summary>Or load from a CDN like unpkg or Skypack</summary>
+
+```html
+<!-- unpkg CDN -->
+<script type="module" src="https://unpkg.com/scroll-shadow-element"></script>
+
+<!-- Skypack CDN -->
+<script type="module" src="https://cdn.skypack.dev/scroll-shadow-element"></script>
+
+<!-- Skypack CDN (minified) -->
+<script type="module" src="https://cdn.skypack.dev/scroll-shadow-element?min"></script>
+```
+
+</details>
 
 ## Usage
 
 ### Import
 
-Import the module, or load it with a script tag.
+Import the module as part of your app bundle, or load it with a script tag.
 
 ```js
 import 'scroll-shadow-element'
 ```
 
 ```html
-<script type="module" src="./node_modules/scroll-shadow-element/scroll-shadow-element.js"></script>
+<script type="module" src="./node_modules/scroll-shadow-element/dist/index.mjs"></script>
 ```
 
 ### Use
 
-Use `<scroll-shadow>` on any element. It will dynamically add scroll
-shadows when scrollable. For example:
+Use `<scroll-shadow>` on any element. For example:
 
 ```html
 <scroll-shadow>
@@ -45,11 +52,13 @@ shadows when scrollable. For example:
 </scroll-shadow>
 ```
 
+Scroll shadows are dynamically added when scrollable.
+
 If you can’t directly wrap your element, you can target a child element with a
 CSS selector using the `el` attribute. This is only recommended for `<tbody>`
 in a `<table>`, where only specific elements are permitted as a direct child.
 
-<details><summary>Example usage for table body</summary>
+<details><summary>Example use for table body</summary>
 
 ```html
 <scroll-shadow el="tbody">
@@ -85,11 +94,9 @@ in a `<table>`, where only specific elements are permitted as a direct child.
 
 </details>
 
-
-
 ## Configuration
 
-Use CSS Custom Properties to change the appearance.
+You can change the default appearance with CSS:
 
 ```css
 /* Default configuration */
@@ -101,29 +108,39 @@ scroll-shadow {
   --scroll-shadow-left: radial-gradient(farthest-side at 0%, #0003, #0000);
   --scroll-shadow-right: radial-gradient(farthest-side at 100%, #0003, #0000);
 }
+
+/* Example: dark mode */
+@media (prefers-color-scheme: dark) {
+  scroll-shadow {
+    --scroll-shadow-top: radial-gradient(farthest-side at 50% 0%, #fff3, #0000);
+    --scroll-shadow-bottom: radial-gradient(farthest-side at 50% 100%, #fff3, #0000);
+    --scroll-shadow-left: radial-gradient(farthest-side at 0%, #fff3, #0000);
+    --scroll-shadow-right: radial-gradient(farthest-side at 100%, #fff3, #0000);
+  }
+}
 ```
+
+### CSS custom properties
+
+| CSS property           | Description                                            | Syntax            |
+| :--------------------- | :----------------------------------------------------- |:----------------- |
+| --scroll-shadow-size   | Sets the maximum size of the scroll indicators         | `<integer>`       |
+| --scroll-shadow-top    | Controls the appearance of the top scroll indicator    | `none \| <image>` |
+| --scroll-shadow-bottom | Controls the appearance of the bottom scroll indicator | `none \| <image>` |
+| --scroll-shadow-left   | Controls the appearance of the left scroll indicator   | `none \| <image>` |
+| --scroll-shadow-right  | Controls the appearance of the right scroll indicator  | `none \| <image>` |
 
 ## Browser support
 
-`<scroll-shadow>` works in all browsers that support [Custom
-Elements][custom-elementsv1] and [Resize Observer][resizeobserver].
+`scroll-shadow-element` works in all browsers that support [Custom
+Elements][custom-elementsv1] and [Resize Observer][resizeobserver]. That is:
+all major browsers are supported. In older browsers, the element just won’t add
+scroll indicators.
 
-Support for these features is checked before defining the custom element in the
-browser.
-
-`<scroll-shadow>` is written with ES6 syntax. If you need to support older
-browsers, you can configure your bundler to compile the package to ES5 syntax.
+The package is written with ES6 syntax. If you need to support older browsers,
+you can configure your bundler to compile it to ES5 syntax.
 
 ## Using with Jest
-
-Depending on your configuration, you might see `SyntaxError: Unexpected token
-'export'` when using Jest. This is because [Jest doesn’t fully support ES
-modules][jest-esm]. There are a few hints in the Jest error output. One of them
-is to use ["moduleNameMapper"][jest-modulenamemapper].
-
-To stub the module out (probably not relevant for your tests) with
-"moduleNameMapper", you can use any empty module, or
-[`jest-transform-stub`][jest-transform-stub]:
 
 ```json
 {
@@ -134,6 +151,12 @@ To stub the module out (probably not relevant for your tests) with
   }
 }
 ```
+
+[Jest doesn’t fully support ES modules][jest-esm]: Depending on your
+configuration, you might see `SyntaxError: Unexpected token 'export'` along
+with a few hints in the Jest error output. Jest’s ["moduleNameMapper"
+option][jest-modulenamemapper] can be used to stub the module out. You can use
+any empty module, or [`jest-transform-stub`][jest-transform-stub].
 
 ## Pure CSS alternative
 
@@ -159,6 +182,13 @@ npm test -- --update-visual-baseline
 
 # Run tests
 npm test
+
+# Run linting checks/fix linting issues
+npm run lint
+npm run lint:fix
+
+# Build
+npm run build
 ```
 
 ## License
