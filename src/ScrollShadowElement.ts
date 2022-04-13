@@ -69,8 +69,10 @@ export class ScrollShadowElement extends HTMLElement {
   }
 
   private start() {
-    const el = this.scrollEl || this.firstElementChild
-    updaters.get(this).start(el, this.scrollEl ? this.firstElementChild : null)
+    updaters.get(this).start(
+      this.scrollEl || this.firstElementChild,
+      this.scrollEl ? this.firstElementChild : null,
+    )
   }
 }
 
@@ -89,11 +91,13 @@ class Updater {
 
   start(element?: HTMLElement, rootElement?: HTMLElement) {
     if (this.el) this.stop()
+
     if (element) {
       element.addEventListener('scroll', this.handleScroll)
       this.resizeObserver.observe(element)
       this.el = element
     }
+
     if (rootElement) {
       this.resizeObserver.observe(rootElement)
       this.rootEl = rootElement
@@ -101,18 +105,16 @@ class Updater {
   }
 
   stop() {
-    if (!this.el) return
     this.el.removeEventListener('scroll', this.handleScroll)
     this.resizeObserver.disconnect()
-    this.el = null
-    this.rootEl = null
+    this.el = this.rootEl = null
   }
 
   update(targetElement: HTMLElement, computedStyle: CSSStyleDeclaration) {
     const { el, rootEl } = this
     if (!el) return
 
-    const maxSize = Number(computedStyle.getPropertyValue('--scroll-shadow-size') || 14)
+    const maxSize = Number(computedStyle.getPropertyValue('--scroll-shadow-size')) || 14
     const style = {
       '--top': clamp(el.scrollTop, 0, maxSize),
       '--bottom': clamp(el.scrollHeight - el.offsetHeight - el.scrollTop, 0, maxSize),
