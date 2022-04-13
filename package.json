@@ -8,8 +8,7 @@
   "type": "module",
   "exports": {
     ".": "./dist/index.mjs",
-    "./scroll-shadow-element": "./dist/index.mjs",
-    "./customElements": "./custom-elements.json"
+    "./scroll-shadow-element": "./dist/index.mjs"
   },
   "main": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
