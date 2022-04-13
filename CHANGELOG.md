@@ -2,10 +2,12 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.1.4] (April 12, 2022)
+## [1.1.5] (April 14, 2022)
 
-Reduced package size by ~113 bytes (~248 bytes when minified). Overall ~1 KB
-bundle size (minified+gzipped).
+### Fixed
+- Removed customElements entry point from export map ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/1605f0a))
+
+## [1.1.4] (April 12, 2022)
 
 ### Added
 - Custom Elements Manifest file ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/956af1b))
@@ -47,6 +49,7 @@ bundle size (minified+gzipped).
 
 Initial release
 
+[1.1.5]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.5
 [1.1.4]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.4
 [1.1.3]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.3
 [1.1.2]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.2

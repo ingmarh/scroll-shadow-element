@@ -154,7 +154,7 @@ you can configure your bundler to compile it to ES5 syntax.
 
 [Jest doesn’t fully support ES modules][jest-esm]: Depending on your
 configuration, you might see `SyntaxError: Unexpected token 'export'` along
-with a few hints in the Jest error output. Jest’s ["moduleNameMapper"
+with a few hints in the error output. Jest’s ["moduleNameMapper"
 option][jest-modulenamemapper] can be used to stub the module out. You can use
 any empty module, or [`jest-transform-stub`][jest-transform-stub].
 
