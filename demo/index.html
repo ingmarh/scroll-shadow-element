@@ -109,21 +109,25 @@
     height: 70px;
   }
   </style>
+  <script>
+    (function(){
+      const script = document.createElement('script')
+      script.type = 'module'
+      script.src = location.hostname === 'localhost'
+        ? '../src/index.ts'
+        : 'https://unpkg.com/scroll-shadow-element'
+      document.querySelector('head').appendChild(script)
+    })()
+  </script>
   <script type="module">
-    const s = document.createElement('script')
-    s.type = 'module'
-    s.src = window.location.hostname === 'localhost'
-      ? '../src/index.ts'
-      : 'https://unpkg.com/scroll-shadow-element'
-    document.body.appendChild(s)
+    document.querySelector('.horizontal-toggle').addEventListener('click', () => {
+      document.querySelector('#demo').classList.toggle('horizontal')
+    })
 
-    function clickToggle(selector, className, target) {
-      document.querySelector(selector).addEventListener('click', () => {
-        document.querySelector(target).classList.toggle(className)
-      })
-    }
-    clickToggle('.horizontal-toggle', 'horizontal', '#demo')
-    clickToggle('.scrollbars-toggle', 'hide-scrollbars', 'body')
+    document.querySelector('.scrollbars-toggle').addEventListener('click', () => {
+      document.body.classList.toggle('hide-scrollbars')
+    })
+
     if (window.matchMedia('(pointer: coarse)').matches) {
       document.body.classList.remove('hide-scrollbars')
     }
