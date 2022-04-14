@@ -19,7 +19,7 @@
     "custom-elements.json"
   ],
   "scripts": {
-    "start": "web-dev-server --open demo/",
+    "start": "web-dev-server --open demo/ --watch",
     "test": "BROWSERS=$([ $CI ] && echo 'chromium webkit firefox' || echo 'chromium firefox') && wtr test/*.test.js --playwright --browsers=$BROWSERS",
     "build": "unbuild",
     "lint": "eslint .",

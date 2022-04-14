@@ -109,16 +109,7 @@
     height: 70px;
   }
   </style>
-  <script>
-    (function(){
-      const script = document.createElement('script')
-      script.type = 'module'
-      script.src = location.hostname === 'localhost'
-        ? '../src/index.ts'
-        : 'https://unpkg.com/scroll-shadow-element'
-      document.querySelector('head').appendChild(script)
-    })()
-  </script>
+  <script type="module" src="https://unpkg.com/scroll-shadow-element" data-dev-src="../src/index.ts"></script>
   <script type="module">
     document.querySelector('.horizontal-toggle').addEventListener('click', () => {
       document.querySelector('#demo').classList.toggle('horizontal')
