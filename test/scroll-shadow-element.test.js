@@ -57,6 +57,9 @@ describe('scroll shadow element', () => {
     await visualDiff(rootEl, 'tbody')
   })
 
+  // TODO
+  it('should update when scroll width/height changed caused by child node change only')
+
   it('should be possible to use a child element with overflowing container', async () => {
     const { rootEl, el } = await renderTable({ el: 'tbody', overflowingContainer: true })
 

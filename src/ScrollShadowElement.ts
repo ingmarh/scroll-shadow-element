@@ -78,7 +78,8 @@ export class ScrollShadowElement extends HTMLElement {
 
 class Updater {
   private handleScroll: () => void
-  private resizeObserver: ResizeObserver
+  private rO: ResizeObserver
+  private mO: MutationObserver
   private el?: HTMLElement
   private rootEl?: HTMLElement
 
@@ -86,7 +87,8 @@ class Updater {
     const update = this.update.bind(this, targetElement, getComputedStyle(targetElement))
 
     this.handleScroll = throttle(update)
-    this.resizeObserver = new ResizeObserver(update)
+    this.rO = new ResizeObserver(update)
+    this.mO = new MutationObserver(() => this.start(this.el, this.rootEl))
   }
 
   start(element?: HTMLElement, rootElement?: HTMLElement) {
@@ -94,19 +96,21 @@ class Updater {
 
     if (element) {
       element.addEventListener('scroll', this.handleScroll)
-      this.resizeObserver.observe(element)
+      ;[element, ...element.children].forEach(el => this.rO.observe(el))
+      this.mO.observe(element, { childList: true })
       this.el = element
     }
 
     if (rootElement) {
-      this.resizeObserver.observe(rootElement)
+      this.rO.observe(rootElement)
       this.rootEl = rootElement
     }
   }
 
   stop() {
     this.el.removeEventListener('scroll', this.handleScroll)
-    this.resizeObserver.disconnect()
+    this.mO.disconnect()
+    this.rO.disconnect()
     this.el = this.rootEl = null
   }
 
