@@ -1,6 +1,6 @@
 {
   "name": "scroll-shadow-element",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Extends a scrollable element with a scroll shadow effect.",
   "license": "MIT",
   "repository": "ingmarh/scroll-shadow-element",

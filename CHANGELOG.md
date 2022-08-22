@@ -2,6 +2,11 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.6] (August 22, 2022)
+
+### Fixed
+- Scroll element inner size change only does not trigger update ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/1689195))
+
 ## [1.1.5] (April 14, 2022)
 
 ### Fixed
@@ -49,6 +54,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 Initial release
 
+[1.1.6]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.6
 [1.1.5]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.5
 [1.1.4]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.4
 [1.1.3]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.3
