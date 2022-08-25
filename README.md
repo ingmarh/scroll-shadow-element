@@ -48,7 +48,7 @@ Use `<scroll-shadow>` on any element. For example:
 
 ```html
 <scroll-shadow>
-  <nav>Long navigation…</nav>
+	<nav>Long navigation…</nav>
 </scroll-shadow>
 ```
 
@@ -62,33 +62,33 @@ in a `<table>`, where only specific elements are permitted as a direct child.
 
 ```html
 <scroll-shadow el="tbody">
-  <table>
-    <thead>
-      <tr>
-        <th>User ID</th>
-        <th>Full name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td>John Doe</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Jane Doe</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Carl Example</td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="2">Only tbody will have scroll shadows.</td>
-      </tr>
-    </tfoot>
-  </table>
+	<table>
+		<thead>
+			<tr>
+				<th>User ID</th>
+				<th>Full name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>John Doe</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>Jane Doe</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>Carl Example</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="2">Only tbody will have scroll shadows.</td>
+			</tr>
+		</tfoot>
+	</table>
 </scroll-shadow>
 ```
 
@@ -101,29 +101,29 @@ You can change the default appearance with CSS:
 ```css
 /* Default configuration */
 scroll-shadow {
-  display: inline-block;
-  --scroll-shadow-size: 14;
-  --scroll-shadow-top: radial-gradient(farthest-side at 50% 0%, #0003, #0000);
-  --scroll-shadow-bottom: radial-gradient(farthest-side at 50% 100%, #0003, #0000);
-  --scroll-shadow-left: radial-gradient(farthest-side at 0%, #0003, #0000);
-  --scroll-shadow-right: radial-gradient(farthest-side at 100%, #0003, #0000);
+	display: inline-block;
+	--scroll-shadow-size: 14;
+	--scroll-shadow-top: radial-gradient(farthest-side at 50% 0%, #0003, #0000);
+	--scroll-shadow-bottom: radial-gradient(farthest-side at 50% 100%, #0003, #0000);
+	--scroll-shadow-left: radial-gradient(farthest-side at 0%, #0003, #0000);
+	--scroll-shadow-right: radial-gradient(farthest-side at 100%, #0003, #0000);
 }
 
 /* Example: dark mode */
 @media (prefers-color-scheme: dark) {
-  scroll-shadow {
-    --scroll-shadow-top: radial-gradient(farthest-side at 50% 0%, #fff3, #0000);
-    --scroll-shadow-bottom: radial-gradient(farthest-side at 50% 100%, #fff3, #0000);
-    --scroll-shadow-left: radial-gradient(farthest-side at 0%, #fff3, #0000);
-    --scroll-shadow-right: radial-gradient(farthest-side at 100%, #fff3, #0000);
-  }
+	scroll-shadow {
+		--scroll-shadow-top: radial-gradient(farthest-side at 50% 0%, #fff3, #0000);
+		--scroll-shadow-bottom: radial-gradient(farthest-side at 50% 100%, #fff3, #0000);
+		--scroll-shadow-left: radial-gradient(farthest-side at 0%, #fff3, #0000);
+		--scroll-shadow-right: radial-gradient(farthest-side at 100%, #fff3, #0000);
+	}
 }
 ```
 
 ### CSS custom properties
 
 | CSS property           | Description                                            | Syntax            |
-| :--------------------- | :----------------------------------------------------- |:----------------- |
+| :--------------------- | :----------------------------------------------------- | :---------------- |
 | --scroll-shadow-size   | Sets the maximum size of the scroll indicators         | `<integer>`       |
 | --scroll-shadow-top    | Controls the appearance of the top scroll indicator    | `none \| <image>` |
 | --scroll-shadow-bottom | Controls the appearance of the bottom scroll indicator | `none \| <image>` |
@@ -144,11 +144,11 @@ you can configure your bundler to compile it to ES5 syntax.
 
 ```json
 {
-  "jest": {
-    "moduleNameMapper": {
-      "^scroll-shadow-element$": "jest-transform-stub"
-    }
-  }
+	"jest": {
+		"moduleNameMapper": {
+			"^scroll-shadow-element$": "jest-transform-stub"
+		}
+	}
 }
 ```
 
