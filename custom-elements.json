@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "2.0.0",
   "modules": [
     {
       "kind": "javascript-module",
@@ -38,19 +38,6 @@
               "name": "--scroll-shadow-right",
               "syntax": "none | <image>",
               "default": "radial-gradient(farthest-side at 100%, #0003, #0000)"
-            }
-          ],
-          "attributes": [
-            {
-              "description": "Can be used to target a child element with a CSS selector (e.g. tbody)",
-              "name": "el"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "description": "Can be used to target a child element with a CSS selector (e.g. tbody)",
-              "name": "el"
             }
           ],
           "superclass": {

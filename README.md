@@ -44,7 +44,8 @@ import 'scroll-shadow-element'
 
 ### Use
 
-Use `<scroll-shadow>` on any element. For example:
+Use `<scroll-shadow>` with any element for dynamically added scroll indicators.
+Example:
 
 ```html
 <scroll-shadow>
@@ -52,47 +53,8 @@ Use `<scroll-shadow>` on any element. For example:
 </scroll-shadow>
 ```
 
-Scroll shadows are dynamically added when scrollable.
-
-If you can’t directly wrap your element, you can target a child element with a
-CSS selector using the `el` attribute. This is only recommended for `<tbody>`
-in a `<table>`, where only specific elements are permitted as a direct child.
-
-<details><summary>Example use for table body</summary>
-
-```html
-<scroll-shadow el="tbody">
-	<table>
-		<thead>
-			<tr>
-				<th>User ID</th>
-				<th>Full name</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>1</td>
-				<td>John Doe</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>Jane Doe</td>
-			</tr>
-			<tr>
-				<td>3</td>
-				<td>Carl Example</td>
-			</tr>
-		</tbody>
-		<tfoot>
-			<tr>
-				<td colspan="2">Only tbody will have scroll shadows.</td>
-			</tr>
-		</tfoot>
-	</table>
-</scroll-shadow>
-```
-
-</details>
+_Note_: When used with a `<table>` element, then the scroll indicators will be
+added to the first `<tbody>` element inside the table.
 
 ## Configuration
 

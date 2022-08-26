@@ -32,20 +32,6 @@ const template = `
 const updaters = new WeakMap()
 
 export class ScrollShadowElement extends HTMLElement {
-	private scrollEl?: HTMLElement
-
-	static get observedAttributes() {
-		return ['el']
-	}
-
-	get el() {
-		return this.getAttribute('el')
-	}
-
-	set el(value) {
-		this.setAttribute('el', value)
-	}
-
 	constructor() {
 		super()
 		this.attachShadow({ mode: 'open' }).innerHTML = template
@@ -53,26 +39,15 @@ export class ScrollShadowElement extends HTMLElement {
 	}
 
 	connectedCallback() {
-		this.shadowRoot.querySelector('slot').addEventListener('slotchange', () => this.start())
-		this.start()
+		this.shadowRoot.querySelector('slot').addEventListener('slotchange', () => {
+			if (this.isConnected) {
+				updaters.get(this).start(this.firstElementChild)
+			}
+		})
 	}
 
 	disconnectedCallback() {
 		updaters.get(this).stop()
-	}
-
-	attributeChangedCallback(_name: string, oldValue: string, newValue: string) {
-		if (oldValue !== newValue) {
-			this.scrollEl = newValue ? this.querySelector(newValue) : null
-			this.start()
-		}
-	}
-
-	private start() {
-		updaters.get(this).start(
-			this.scrollEl || this.firstElementChild,
-			this.scrollEl ? this.firstElementChild : null
-		)
 	}
 }
 
@@ -88,23 +63,23 @@ class Updater {
 
 		this.handleScroll = throttle(update)
 		this.rO = new ResizeObserver(update)
-		this.mO = new MutationObserver(() => this.start(this.el, this.rootEl))
+		this.mO = new MutationObserver(() => this.start(this.el))
 	}
 
-	start(element?: HTMLElement, rootElement?: HTMLElement) {
+	start(element: HTMLElement | null) {
 		if (this.el) this.stop()
+		if (!element) return
 
-		if (element) {
-			element.addEventListener('scroll', this.handleScroll)
-			;[element, ...element.children].forEach(el => this.rO.observe(el))
-			this.mO.observe(element, { childList: true })
-			this.el = element
+		if (element.nodeName === 'TABLE') {
+			this.rO.observe(element)
+			this.rootEl = element
+			element = element.querySelector('tbody')
 		}
 
-		if (rootElement) {
-			this.rO.observe(rootElement)
-			this.rootEl = rootElement
-		}
+		element.addEventListener('scroll', this.handleScroll)
+		;[element, ...element.children].forEach(el => this.rO.observe(el))
+		this.mO.observe(element, { childList: true })
+		this.el = element
 	}
 
 	stop() {
