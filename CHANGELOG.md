@@ -2,6 +2,15 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] (September 21, 2022)
+
+### Removed
+- Removed "el" attribute in favor of auto-detecting tbody use case ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/3f04ce3))
+- Removed legacy exports entry and file ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/84cfaab))
+
+### Changed
+- Changed the used file extension from .mjs to .js ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/992fc88))
+
 ## [1.1.6] (August 22, 2022)
 
 ### Fixed
@@ -54,6 +63,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 Initial release
 
+[2.0.0]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v2.0.0
 [1.1.6]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.6
 [1.1.5]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.5
 [1.1.4]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.4
