@@ -1,11 +1,14 @@
 # &lt;scroll-shadow&gt; element
 
+[![npm version][npm-version-badge-src]][npm-package-href]
+[![bundle size (minified and gzipped)][bundlesize-badge-src]][bundlesize-href]
+
 > Extends a scrollable element with a scroll shadow effect.
 
-A small custom element adding dynamic scroll shadows to the contained element,
-indicating scrollable content even when scroll bars aren’t displayed.
+A small web component, adding dynamic scroll indicators even when scroll bars
+aren’t displayed.
 
-🔎 [See the demo](https://ingmarh.github.io/scroll-shadow-element/demo/)
+🔎 [See the demo][demo-href]
 
 ## Installation
 
@@ -44,8 +47,7 @@ import 'scroll-shadow-element'
 
 ### Use
 
-Use `<scroll-shadow>` with any element for dynamically added scroll indicators.
-Example:
+Wrap any element for dynamically added scroll indicators. For example:
 
 ```html
 <scroll-shadow>
@@ -53,8 +55,8 @@ Example:
 </scroll-shadow>
 ```
 
-_Note_: When used with a `<table>` element, then the scroll indicators will be
-added to the first `<tbody>` element inside the table.
+> **Note**
+> When used with a `<table>` element, then the scroll indicators will be added to the first `<tbody>`.
 
 ## Configuration
 
@@ -163,3 +165,8 @@ Distributed under the terms of the MIT license. See [LICENSE](LICENSE) for detai
 [jest-esm]: https://jestjs.io/docs/ecmascript-modules
 [jest-modulenamemapper]: https://jestjs.io/docs/configuration#modulenamemapper-objectstring-string--arraystring
 [jest-transform-stub]: https://www.npmjs.com/package/jest-transform-stub
+[npm-version-badge-src]: https://img.shields.io/npm/v/scroll-shadow-element?style=flat-square
+[bundlesize-badge-src]: https://img.shields.io/bundlephobia/minzip/scroll-shadow-element?color=a8da93&style=flat-square
+[npm-package-href]: https://npmjs.com/package/scroll-shadow-element
+[bundlesize-href]: https://bundlephobia.com/package/scroll-shadow-element
+[demo-href]: https://ingmarh.github.io/scroll-shadow-element/demo/
