@@ -39,7 +39,7 @@ import 'scroll-shadow-element'
 ```
 
 ```html
-<script type="module" src="./node_modules/scroll-shadow-element/dist/index.mjs"></script>
+<script type="module" src="./node_modules/scroll-shadow-element/dist/index.js"></script>
 ```
 
 ### Use
