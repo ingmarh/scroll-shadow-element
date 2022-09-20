@@ -7,15 +7,13 @@
   "author": "Ingmar Hergst",
   "type": "module",
   "exports": {
-    ".": "./dist/index.mjs",
-    "./scroll-shadow-element": "./dist/index.mjs"
+    ".": "./dist/index.mjs"
   },
   "main": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "customElements": "./custom-elements.json",
   "files": [
     "dist/**",
-    "scroll-shadow-element.js",
     "custom-elements.json"
   ],
   "scripts": {
