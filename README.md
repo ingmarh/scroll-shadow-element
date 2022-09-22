@@ -3,14 +3,14 @@
 [![npm version][npm-version-badge-src]][npm-package-href]
 [![bundle size (minified and gzipped)][bundlesize-badge-src]][bundlesize-href]
 
-> Extends a scrollable element with a scroll shadow effect.
-
-A small web component, adding dynamic scroll indicators even when scroll bars
-aren’t displayed.
+A small web component to enhance scrollable elements with dynamic scroll
+indicators.
 
 🔎 [See the demo][demo-href]
 
-## Installation
+## Usage
+
+### Install
 
 ```bash
 npm install scroll-shadow-element
@@ -30,8 +30,6 @@ npm install scroll-shadow-element
 ```
 
 </details>
-
-## Usage
 
 ### Import
 

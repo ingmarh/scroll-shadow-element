@@ -1,7 +1,7 @@
 {
   "name": "scroll-shadow-element",
   "version": "2.0.0",
-  "description": "Extends a scrollable element with a scroll shadow effect.",
+  "description": "A small web component to enhance scrollable elements with dynamic scroll indicators.",
   "license": "MIT",
   "repository": "ingmarh/scroll-shadow-element",
   "author": "Ingmar Hergst",
