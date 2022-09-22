@@ -132,26 +132,13 @@ too.
 
 ## Development
 
-```
-# Install dependencies
-npm install
-
-# Open demo page for manual testing
-npm start
-
-# Create visual regression test baseline images for development
-npm test -- --update-visual-baseline
-
-# Run tests
-npm test
-
-# Run linting checks/fix linting issues
-npm run lint
-npm run lint:fix
-
-# Build
-npm run build
-```
+- `npm install` to install dependencies
+- `npm test -- --update-visual-baseline` to create local visual regression test baseline images
+- `npm test` to run tests
+- `npm start` to open a demo page for manual testing
+- `npm run lint` to run linting checks
+- `npm run lint:fix` to fix linting issues
+- `npm run build` to build
 
 ## License
 
