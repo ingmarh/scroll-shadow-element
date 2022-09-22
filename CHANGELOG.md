@@ -2,6 +2,15 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1] (September 23, 2022)
+
+### Fixed
+- Scroll indicators did not update after readding the element to the DOM ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/9a8de7f))
+- The Custom Elements Manifest file included incorrect paths ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/a9b1d39))
+
+### Optimized
+- Improved minzipped file size ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/1a5cb2b))
+
 ## [2.0.0] (September 21, 2022)
 
 ### Removed
@@ -63,6 +72,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 Initial release
 
+[2.0.1]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v2.0.1
 [2.0.0]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v2.0.0
 [1.1.6]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.6
 [1.1.5]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v1.1.5
