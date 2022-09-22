@@ -58,7 +58,6 @@ class Updater {
 	private rO: ResizeObserver
 	private mO: MutationObserver
 	private el?: HTMLElement
-	private rootEl?: HTMLElement
 
 	constructor(targetElement: Element) {
 		const update = this.update.bind(this, targetElement, getComputedStyle(targetElement))
@@ -74,7 +73,6 @@ class Updater {
 
 		if (element.nodeName === 'TABLE') {
 			this.rO.observe(element)
-			this.rootEl = element
 			element = element.querySelector('tbody')
 		}
 
@@ -88,43 +86,41 @@ class Updater {
 		this.el.removeEventListener('scroll', this.handleScroll)
 		this.mO.disconnect()
 		this.rO.disconnect()
-		this.el = this.rootEl = null
+		this.el = null
 	}
 
 	update(targetElement: HTMLElement, computedStyle: CSSStyleDeclaration) {
-		const { el, rootEl } = this
+		const { el } = this
 		if (!el) return
 
 		const maxSize = Number(computedStyle.getPropertyValue('--scroll-shadow-size')) || 14
-		const style = {
-			'--top': clamp(el.scrollTop, 0, maxSize),
-			'--bottom': clamp(el.scrollHeight - el.offsetHeight - el.scrollTop, 0, maxSize),
-			'--left': clamp(el.scrollLeft, 0, maxSize),
-			'--right': clamp(el.scrollWidth - el.offsetWidth - el.scrollLeft, 0, maxSize),
-		}
+		const clamp = (num: number) => num > maxSize ? maxSize : num < 0 ? 0 : num
 
-		if (rootEl) {
+		applyStyle(targetElement, {
+			'--top': clamp(el.scrollTop),
+			'--bottom': clamp(el.scrollHeight - el.offsetHeight - el.scrollTop),
+			'--left': clamp(el.scrollLeft),
+			'--right': clamp(el.scrollWidth - el.offsetWidth - el.scrollLeft),
+		})
+
+		if (el.nodeName === 'TBODY') {
 			const clientRect = el.getBoundingClientRect()
-			const rootClientRect = rootEl.getBoundingClientRect()
+			const rootClientRect = el.parentElement.getBoundingClientRect()
 
-			Object.assign(style, {
-				top: clamp(clientRect.top - rootClientRect.top),
-				bottom: clamp(rootClientRect.bottom - clientRect.bottom),
-				left: clamp(clientRect.left - rootClientRect.left),
-				right: clamp(rootClientRect.right - clientRect.right),
+			applyStyle(targetElement, {
+				top: clientRect.top - rootClientRect.top,
+				bottom: rootClientRect.bottom - clientRect.bottom,
+				left: clientRect.left - rootClientRect.left,
+				right: rootClientRect.right - clientRect.right,
 			})
-		}
-
-		for (const key in style) {
-			targetElement.style.setProperty(key, `${style[key]}px`)
 		}
 	}
 }
 
-function clamp(num: number, min = 0, max?: number) {
-	if (num < min) return min
-	if (num > max) return max
-	return num
+function applyStyle(targetElement: HTMLElement, styles: Record<string, number>) {
+	for (const key in styles) {
+		targetElement.style.setProperty(key, `${styles[key]}px`)
+	}
 }
 
 function throttle(callback: () => void) {
