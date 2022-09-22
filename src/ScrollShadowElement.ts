@@ -34,16 +34,18 @@ const updaters = new WeakMap()
 export class ScrollShadowElement extends HTMLElement {
 	constructor() {
 		super()
-		this.attachShadow({ mode: 'open' }).innerHTML = template
-		updaters.set(this, new Updater(this.shadowRoot.lastElementChild))
+
+		const shadowRoot = this.attachShadow({ mode: 'open' })
+		shadowRoot.innerHTML = template
+		shadowRoot.addEventListener('slotchange', () => {
+			updaters.get(this).start(this.firstElementChild)
+		})
+
+		updaters.set(this, new Updater(shadowRoot.lastElementChild))
 	}
 
 	connectedCallback() {
-		this.shadowRoot.querySelector('slot').addEventListener('slotchange', () => {
-			if (this.isConnected) {
-				updaters.get(this).start(this.firstElementChild)
-			}
-		})
+		updaters.get(this).start(this.firstElementChild)
 	}
 
 	disconnectedCallback() {
