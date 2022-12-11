@@ -14,11 +14,16 @@ const template = `
 			left: 0;
 			right: 0;
 			pointer-events: none;
+			--m: var(--scroll-shadow-size, 14) * 1px;
 			background:
-				var(--scroll-shadow-top, radial-gradient(farthest-side at 50% 0%, #0003, #0000)) top / 100% var(--t),
-				var(--scroll-shadow-bottom, radial-gradient(farthest-side at 50% 100%, #0003, #0000)) bottom / 100% var(--b),
-				var(--scroll-shadow-left, radial-gradient(farthest-side at 0%, #0003, #0000)) left / var(--l) 100%,
-				var(--scroll-shadow-right, radial-gradient(farthest-side at 100%, #0003, #0000)) right / var(--r) 100%;
+				var(--scroll-shadow-top, radial-gradient(farthest-side at 50% 0%, #0003, #0000)) top /
+					100% min(var(--st), var(--m)),
+				var(--scroll-shadow-bottom, radial-gradient(farthest-side at 50% 100%, #0003, #0000)) bottom /
+					100% min(var(--sh) - 100% - var(--st), var(--m)),
+				var(--scroll-shadow-left, radial-gradient(farthest-side at 0%, #0003, #0000)) left /
+					min(var(--sl), var(--m)) 100%,
+				var(--scroll-shadow-right, radial-gradient(farthest-side at 100%, #0003, #0000)) right /
+					min(var(--sw) - 100% - var(--sl), var(--m)) 100%;
 			background-repeat: no-repeat;
 		}
 	</style>
@@ -33,20 +38,20 @@ export class ScrollShadowElement extends HTMLElement {
 		super()
 		const shadowRoot = this.attachShadow({ mode: 'open' })
 		shadowRoot.innerHTML = template
-		shadowRoot.addEventListener('slotchange', () => this._start())
+		shadowRoot.addEventListener('slotchange', () => this._on())
 		updaters.set(this, new Updater(shadowRoot.lastElementChild as HTMLElement))
 	}
 
 	connectedCallback() {
-		this._start()
+		this._on()
 	}
 
 	disconnectedCallback() {
-		updaters.get(this).stop()
+		updaters.get(this).off()
 	}
 
-	private _start() {
-		updaters.get(this).start(this.firstElementChild)
+	private _on() {
+		updaters.get(this).on(this.firstElementChild)
 	}
 }
 
@@ -57,14 +62,13 @@ class Updater {
 	private el: HTMLElement | null
 
 	constructor(targetElement: HTMLElement) {
-		const computedStyle = getComputedStyle(targetElement)
-		this.update = () => update(this.el, targetElement, computedStyle)
+		this.update = () => update(this.el, targetElement)
 		this.rO = new ResizeObserver(this.update)
-		this.mO = new MutationObserver(() => this.start(this.el))
+		this.mO = new MutationObserver(() => this.on(this.el))
 	}
 
-	start(element: HTMLElement | null) {
-		if (this.el) this.stop()
+	on(element: HTMLElement | null) {
+		if (this.el) this.off()
 		if (!element) return
 		if (element.nodeName === 'TABLE') {
 			this.rO.observe(element)
@@ -76,7 +80,7 @@ class Updater {
 		this.el = element
 	}
 
-	stop() {
+	off() {
 		this.el.removeEventListener('scroll', this.update)
 		this.mO.disconnect()
 		this.rO.disconnect()
@@ -84,32 +88,27 @@ class Updater {
 	}
 }
 
-function update(element: HTMLElement | null, targetElement: HTMLElement, computedStyle: CSSStyleDeclaration) {
+function update(element: HTMLElement | null, targetElement: HTMLElement) {
 	if (!element) return
 
-	const maxSize = Number(computedStyle.getPropertyValue('--scroll-shadow-size')) || 14
-	const clamp = (num: number) => num > maxSize ? maxSize : num < 0 ? 0 : num
-
-	const style = [
-		['--t', clamp(element.scrollTop)],
-		['--b', clamp(element.scrollHeight - element.offsetHeight - element.scrollTop)],
-		['--l', clamp(element.scrollLeft)],
-		['--r', clamp(element.scrollWidth - element.offsetWidth - element.scrollLeft)],
-	]
+	let cssText = `
+		--st: ${element.scrollTop}px;
+		--sl: ${element.scrollLeft}px;
+		--sh: ${element.scrollHeight}px;
+		--sw: ${element.scrollWidth}px;
+	`
 
 	if (element.nodeName === 'TBODY') {
 		const clientRect = element.getBoundingClientRect()
 		const rootClientRect = element.parentElement.getBoundingClientRect()
 
-		style.push(
-			['top', clientRect.top - rootClientRect.top],
-			['bottom', rootClientRect.bottom - clientRect.bottom],
-			['left', clientRect.left - rootClientRect.left],
-			['right', rootClientRect.right - clientRect.right],
-		)
+		cssText += `
+			top: ${clientRect.top - rootClientRect.top}px;
+			bottom: ${rootClientRect.bottom - clientRect.bottom}px;
+			left: ${clientRect.left - rootClientRect.left}px;
+			right: ${rootClientRect.right - clientRect.right}px;
+		`
 	}
-
-	const cssText = style.reduce((cssText, rule) => `${cssText}${rule[0]}:${rule[1]}px;`, '')
 
 	requestAnimationFrame(() => {
 		targetElement.style.cssText = cssText

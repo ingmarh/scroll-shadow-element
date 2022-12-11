@@ -94,10 +94,10 @@ scroll-shadow {
 
 ## Browser support
 
-`scroll-shadow-element` works in all browsers that support [Custom
-Elements][custom-elementsv1] and [Resize Observer][resizeobserver]. That is:
-all major browsers are supported. In older browsers, the element just won’t add
-scroll indicators.
+`scroll-shadow-element` works in all major browsers: all browsers that support
+[Custom Elements][custom-elementsv1], [Resize Observer][resizeobserver] and the
+[`min()` CSS function][css-math-functions]. In older browsers, the element just
+won’t add scroll indicators.
 
 The package is written with ES6 syntax. If you need to support older browsers,
 you can configure your bundler to compile it to ES5 syntax.
@@ -146,6 +146,7 @@ Distributed under the terms of the MIT license. See [LICENSE](LICENSE) for detai
 
 [custom-elementsv1]: https://caniuse.com/custom-elementsv1
 [resizeobserver]: https://caniuse.com/resizeobserver
+[css-math-functions]: https://caniuse.com/css-math-functions
 [pure-css-alternative]: https://lea.verou.me/2012/04/background-attachment-local/
 [jest-esm]: https://jestjs.io/docs/ecmascript-modules
 [jest-modulenamemapper]: https://jestjs.io/docs/configuration#modulenamemapper-objectstring-string--arraystring
