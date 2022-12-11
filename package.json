@@ -1,6 +1,6 @@
 {
   "name": "scroll-shadow-element",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "A small web component to enhance scrollable elements with dynamic scroll indicators.",
   "license": "MIT",
   "repository": "ingmarh/scroll-shadow-element",
@@ -25,11 +25,14 @@
     "prepublishOnly": "npm run build"
   },
   "keywords": [
-    "scroll shadow",
-    "scroll indicator",
-    "overflow shadow",
-    "web component",
-    "custom element"
+    "scroll",
+    "shadow",
+    "overflow",
+    "indicator",
+    "custom",
+    "element",
+    "web",
+    "component"
   ],
   "devDependencies": {
     "@open-wc/testing": "^3.1.7",
