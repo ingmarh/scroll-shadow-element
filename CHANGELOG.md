@@ -2,6 +2,12 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.4] (December 14, 2022)
+
+### Fixed
+- Enable direct use on scrollable table elements ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/7dcafb2))
+- Use correct indicators in case of differing size ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/1f8a3f3))
+
 ## [2.0.3] (December 11, 2022)
 
 ### Optimized
@@ -83,6 +89,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 Initial release
 
+[2.0.4]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v2.0.4
 [2.0.3]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v2.0.3
 [2.0.2]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v2.0.2
 [2.0.1]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v2.0.1
