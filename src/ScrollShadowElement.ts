@@ -17,13 +17,13 @@ const template = `
 			--m: var(--scroll-shadow-size, 14) * 1px;
 			background:
 				var(--scroll-shadow-top, radial-gradient(farthest-side at 50% 0%, #0003, #0000)) top /
-					100% min(var(--st), var(--m)),
+					100% min(var(--t), var(--m)),
 				var(--scroll-shadow-bottom, radial-gradient(farthest-side at 50% 100%, #0003, #0000)) bottom /
-					100% min(var(--sh) - 100% - var(--st), var(--m)),
+					100% min(var(--b), var(--m)),
 				var(--scroll-shadow-left, radial-gradient(farthest-side at 0%, #0003, #0000)) left /
-					min(var(--sl), var(--m)) 100%,
+					min(var(--l), var(--m)) 100%,
 				var(--scroll-shadow-right, radial-gradient(farthest-side at 100%, #0003, #0000)) right /
-					min(var(--sw) - 100% - var(--sl), var(--m)) 100%;
+					min(var(--r), var(--m)) 100%;
 			background-repeat: no-repeat;
 		}
 	</style>
@@ -92,10 +92,10 @@ function update(element: HTMLElement | null, targetElement: HTMLElement) {
 	if (!element) return
 
 	let cssText = `
-		--st: ${element.scrollTop}px;
-		--sl: ${element.scrollLeft}px;
-		--sh: ${element.scrollHeight}px;
-		--sw: ${element.scrollWidth}px;
+		--t: ${element.scrollTop}px;
+		--b: ${element.scrollHeight - element.offsetHeight - element.scrollTop}px;
+		--l: ${element.scrollLeft}px;
+		--r: ${element.scrollWidth - element.offsetWidth - element.scrollLeft}px;
 	`
 
 	if (element.nodeName === 'TBODY') {
