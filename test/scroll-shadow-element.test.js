@@ -50,7 +50,7 @@ describe('scroll shadow element', () => {
 		await visualDiff(rootEl, 'shadow-top20-bottom20')
 	})
 
-	it('should work with the first tbody element in a table', async () => {
+	it('should work with the first tbody element in a non-scrollable table', async () => {
 		const rootEl = await fixture(
 			html`
 				<scroll-shadow>
@@ -89,6 +89,42 @@ describe('scroll shadow element', () => {
 
 		el.scrollTop = 10
 		await visualDiff(rootEl, 'tbody')
+	})
+
+	it('should work with a scrollable table', async () => {
+		const rootEl = await fixture(
+			html`
+				<scroll-shadow>
+					<table style="display:block;height:70px;overflow:auto">
+						<thead style="display:block">
+							<tr>
+								<th style="width:10vw">User ID</th>
+								<th style="width:10vw">Full name</th>
+							</tr>
+						</thead>
+						<tbody style="display:block;">
+							<tr>
+								<td style="width:10vw">1</td>
+								<td style="width:10vw">John Doe</td>
+							</tr>
+							<tr>
+								<td style="width:10vw">2</td>
+								<td style="width:10vw">Jane Doe</td>
+							</tr>
+							<tr>
+								<td style="width:10vw">3</td>
+								<td style="width:10vw">Carl Example</td>
+							</tr>
+						</tbody>
+					</table>
+				</scroll-shadow>
+			`
+		)
+
+		const el = rootEl.querySelector('table')
+
+		el.scrollTop = 10
+		await visualDiff(rootEl, 'table')
 	})
 
 	// TODO

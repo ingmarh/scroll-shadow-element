@@ -70,7 +70,10 @@ class Updater {
 	on(element: HTMLElement | null) {
 		if (this.el) this.off()
 		if (!element) return
-		if (element.nodeName === 'TABLE') {
+		if (
+			element.nodeName === 'TABLE' &&
+			!/scroll|auto/.test(getComputedStyle(element).getPropertyValue('overflow'))
+		) {
 			this.rO.observe(element)
 			element = element.querySelector('tbody')
 		}

@@ -54,7 +54,8 @@ Wrap any element for dynamically added scroll indicators. For example:
 ```
 
 > **Note**
-> When used with a `<table>` element, then the scroll indicators will be added to the first `<tbody>`.
+> When used with a non-scrollable `<table>` element, then it will be applied to
+> the first `<tbody>`.
 
 ## Configuration
 
