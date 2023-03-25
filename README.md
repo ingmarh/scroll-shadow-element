@@ -8,15 +8,23 @@ indicators.
 
 🔎 [See the demo][demo-href]
 
-## Usage
-
-### Install
+## Installation
 
 ```bash
 npm install scroll-shadow-element
 ```
 
-<details><summary>Or load from a CDN like unpkg or Skypack</summary>
+Import the module as part of your app bundle, or with a script tag.
+
+```js
+import 'scroll-shadow-element'
+```
+
+```html
+<script type="module" src="./node_modules/scroll-shadow-element/dist/index.js"></script>
+```
+
+<details><summary>Or load from a CDN like unpkg</summary>
 
 ```html
 <!-- unpkg CDN -->
@@ -31,19 +39,7 @@ npm install scroll-shadow-element
 
 </details>
 
-### Import
-
-Import the module as part of your app bundle, or load it with a script tag.
-
-```js
-import 'scroll-shadow-element'
-```
-
-```html
-<script type="module" src="./node_modules/scroll-shadow-element/dist/index.js"></script>
-```
-
-### Use
+## Usage
 
 Wrap any element for dynamically added scroll indicators. For example:
 
@@ -54,15 +50,16 @@ Wrap any element for dynamically added scroll indicators. For example:
 ```
 
 > **Note**
-> When used with a non-scrollable `<table>` element, then it will be applied to
-> the first `<tbody>`.
+> When wrapping a non-scrollable `<table>` element, then its first `<tbody>`
+> will be used.
 
 ## Configuration
 
-You can change the default appearance with CSS:
+You can change the default appearance with CSS.
+
+### Default
 
 ```css
-/* Default configuration */
 scroll-shadow {
 	display: inline-block;
 	--scroll-shadow-size: 14;
@@ -71,8 +68,11 @@ scroll-shadow {
 	--scroll-shadow-left: radial-gradient(farthest-side at 0%, #0003, #0000);
 	--scroll-shadow-right: radial-gradient(farthest-side at 100%, #0003, #0000);
 }
+```
 
-/* Example: dark mode */
+### Example: dark mode
+
+```css
 @media (prefers-color-scheme: dark) {
 	scroll-shadow {
 		--scroll-shadow-top: radial-gradient(farthest-side at 50% 0%, #fff3, #0000);
@@ -85,7 +85,7 @@ scroll-shadow {
 
 ### CSS custom properties
 
-| CSS property           | Description                                            | Syntax            |
+| Property               | Description                                            | Syntax            |
 | :--------------------- | :----------------------------------------------------- | :---------------- |
 | --scroll-shadow-size   | Sets the maximum size of the scroll indicators         | `<integer>`       |
 | --scroll-shadow-top    | Controls the appearance of the top scroll indicator    | `none \| <image>` |
