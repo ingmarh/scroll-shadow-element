@@ -1,5 +1,9 @@
 import { ScrollShadowElement } from './ScrollShadowElement.js'
 
+type IntrinsicBase = JSX.IntrinsicElements extends { span: infer SpanElement }
+	? SpanElement
+	: Record<string, unknown>
+
 declare global {
 	interface HTMLElementTagNameMap {
 		'scroll-shadow': ScrollShadowElement
@@ -7,10 +11,7 @@ declare global {
 
 	namespace JSX {
 		interface IntrinsicElements {
-			'scroll-shadow': {
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-				[prop: string]: any
-			}
+			'scroll-shadow': IntrinsicBase & { class?: string }
 		}
 	}
 }
