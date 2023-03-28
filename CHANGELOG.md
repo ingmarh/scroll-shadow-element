@@ -2,6 +2,12 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.5] (March 28, 2023)
+
+### Optimized
+- Improved JSX intrinsic element types ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/6c7d9a9))
+- Improved code for a smaller file size ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/6b37dbd))
+
 ## [2.0.4] (December 14, 2022)
 
 ### Fixed
@@ -89,6 +95,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 Initial release
 
+[2.0.5]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v2.0.5
 [2.0.4]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v2.0.4
 [2.0.3]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v2.0.3
 [2.0.2]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v2.0.2
