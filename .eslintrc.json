@@ -12,6 +12,7 @@
     "semi": ["error", "never"],
     "quotes": ["error", "single"],
     "object-curly-spacing": ["error", "always"],
-    "@typescript-eslint/no-namespace": ["error", { "allowDeclarations": true }]
+    "@typescript-eslint/no-namespace": ["error", { "allowDeclarations": true }],
+    "@typescript-eslint/no-non-null-assertion": "off"
   }
 }

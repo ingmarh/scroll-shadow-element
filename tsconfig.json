@@ -1,0 +1,7 @@
+{
+	"compilerOptions": {
+		"strictNullChecks": true,
+		"target": "es2020",
+		"moduleResolution": "nodenext"
+	}
+}

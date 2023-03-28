@@ -1,4 +1,6 @@
 const template = `
+	<slot></slot>
+	<s></s>
 	<style>
 		:host {
 			display: inline-block;
@@ -27,93 +29,82 @@ const template = `
 			background-repeat: no-repeat;
 		}
 	</style>
-	<slot></slot>
-	<s></s>
 `
 
-const updaters = new WeakMap()
+const updaters = new WeakMap<ScrollShadowElement, Updater>()
 
 export class ScrollShadowElement extends HTMLElement {
 	constructor() {
 		super()
-		const shadowRoot = this.attachShadow({ mode: 'open' })
-		shadowRoot.innerHTML = template
-		shadowRoot.addEventListener('slotchange', () => this._on())
-		updaters.set(this, new Updater(shadowRoot.lastElementChild as HTMLElement))
+		this.attachShadow({ mode: 'open' })
+		this.shadowRoot!.innerHTML = template
+		this.shadowRoot!.addEventListener('slotchange', () => this.connectedCallback())
+		updaters.set(this, new Updater(<HTMLElement>this.shadowRoot!.children[1]))
 	}
 
 	connectedCallback() {
-		this._on()
+		updaters.get(this)!.on(<HTMLElement>this.children[0])
 	}
 
 	disconnectedCallback() {
-		updaters.get(this).off()
-	}
-
-	private _on() {
-		updaters.get(this).on(this.firstElementChild)
+		updaters.get(this)!.on()
 	}
 }
 
 class Updater {
-	private update: () => void
+	private cb: () => void
 	private rO: ResizeObserver
 	private mO: MutationObserver
-	private el: HTMLElement | null
+	private el: HTMLElement
 
 	constructor(targetElement: HTMLElement) {
-		this.update = () => update(this.el, targetElement)
-		this.rO = new ResizeObserver(this.update)
+		this.cb = () => this.update(targetElement)
+		this.rO = new ResizeObserver(this.cb)
 		this.mO = new MutationObserver(() => this.on(this.el))
 	}
 
-	on(element: HTMLElement | null) {
-		if (this.el) this.off()
+	on(element?: HTMLElement) {
+		if (this.el) {
+			this.el.removeEventListener('scroll', this.cb)
+			this.rO.disconnect()
+			this.mO.disconnect()
+		}
 		if (!element) return
 		if (
 			element.nodeName === 'TABLE' &&
 			!/scroll|auto/.test(getComputedStyle(element).getPropertyValue('overflow'))
 		) {
 			this.rO.observe(element)
-			element = element.querySelector('tbody')
+			element = (<HTMLTableElement>element).tBodies[0]
 		}
-		element.addEventListener('scroll', this.update)
+		element.addEventListener('scroll', this.cb)
 		;[element, ...element.children].forEach(el => this.rO.observe(el))
 		this.mO.observe(element, { childList: true })
 		this.el = element
 	}
 
-	off() {
-		this.el.removeEventListener('scroll', this.update)
-		this.mO.disconnect()
-		this.rO.disconnect()
-		this.el = null
-	}
-}
-
-function update(element: HTMLElement | null, targetElement: HTMLElement) {
-	if (!element) return
-
-	let cssText = `
-		--t: ${element.scrollTop}px;
-		--b: ${element.scrollHeight - element.offsetHeight - element.scrollTop}px;
-		--l: ${element.scrollLeft}px;
-		--r: ${element.scrollWidth - element.offsetWidth - element.scrollLeft}px;
-	`
-
-	if (element.nodeName === 'TBODY') {
-		const clientRect = element.getBoundingClientRect()
-		const rootClientRect = element.parentElement.getBoundingClientRect()
-
-		cssText += `
-			top: ${clientRect.top - rootClientRect.top}px;
-			bottom: ${rootClientRect.bottom - clientRect.bottom}px;
-			left: ${clientRect.left - rootClientRect.left}px;
-			right: ${rootClientRect.right - clientRect.right}px;
+	update(targetElement: HTMLElement) {
+		let cssText = `
+			--t: ${this.el.scrollTop}px;
+			--b: ${this.el.scrollHeight - this.el.offsetHeight - this.el.scrollTop}px;
+			--l: ${this.el.scrollLeft}px;
+			--r: ${this.el.scrollWidth - this.el.offsetWidth - this.el.scrollLeft}px;
 		`
-	}
 
-	requestAnimationFrame(() => {
-		targetElement.style.cssText = cssText
-	})
+		if (this.el.nodeName === 'TBODY') {
+			const clientRect = this.el.getBoundingClientRect()
+			const rootClientRect = (<HTMLTableElement>this.el.parentElement).getBoundingClientRect()
+
+			cssText += `
+				top: ${clientRect.top - rootClientRect.top}px;
+				bottom: ${rootClientRect.bottom - clientRect.bottom}px;
+				left: ${clientRect.left - rootClientRect.left}px;
+				right: ${rootClientRect.right - clientRect.right}px;
+			`
+		}
+
+		requestAnimationFrame(() => {
+			targetElement.style.cssText = cssText
+		})
+	}
 }

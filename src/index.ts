@@ -1,4 +1,4 @@
-import { ScrollShadowElement } from './ScrollShadowElement'
+import { ScrollShadowElement } from './ScrollShadowElement.js'
 
 declare global {
 	interface HTMLElementTagNameMap {
