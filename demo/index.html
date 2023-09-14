@@ -25,6 +25,9 @@
 				line-height: 1.5em;
 				color: #253b4f;
 			}
+			body > * + * {
+				margin-top: 1em;
+			}
 			#demo {
 				width: 400px;
 				height: 70vh;
@@ -32,24 +35,16 @@
 				max-height: 400px;
 				overflow: auto;
 				padding: 2em 2em 0;
-				box-shadow: inset 1px 1px 4px #c8c8c8;
-				border-radius: 0.4em;
 				resize: horizontal;
 			}
 			#demo.horizontal {
 				width: 250px;
 			}
-			.hide-scrollbars #demo,
-			.hide-scrollbars tbody {
-				scrollbar-width: none;
-			}
-			.hide-scrollbars #demo::-webkit-scrollbar,
-			.hide-scrollbars tbody::-webkit-scrollbar {
-				display: none;
+			.info {
+				padding: 0 2em;
 			}
 			.actions {
 				display: flex;
-				margin-top: 1em;
 			}
 			.actions > :not(:last-child) {
 				margin-right: 1em;
@@ -117,17 +112,9 @@
 			document.querySelector('.horizontal-toggle').addEventListener('click', () => {
 				document.querySelector('#demo').classList.toggle('horizontal')
 			})
-
-			document.querySelector('.scrollbars-toggle').addEventListener('click', () => {
-				document.body.classList.toggle('hide-scrollbars')
-			})
-
-			if (window.matchMedia('(pointer: coarse)').matches) {
-				document.body.classList.remove('hide-scrollbars')
-			}
 		</script>
 	</head>
-	<body class="hide-scrollbars">
+	<body>
 		<scroll-shadow>
 			<main id="demo">
 				<h1>&lt;scroll-shadow&gt;</h1>
@@ -239,15 +226,11 @@
 				</p>
 			</main>
 		</scroll-shadow>
+		<small class="info">Test with different devices / scroll bar settings</small>
 		<div class="actions">
 			<span>
 				<button type="button" class="horizontal-toggle">
 					Toggle horizontal
-				</button>
-			</span>
-			<span>
-				<button type="button" class="scrollbars-toggle">
-					Toggle scrollbars
 				</button>
 			</span>
 			<a href="https://github.com/ingmarh/scroll-shadow-element" aria-label="GitHub repository">
