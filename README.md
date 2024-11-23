@@ -136,7 +136,7 @@ too.
 - `npm install` to install dependencies
 - `npm test -- --update-visual-baseline` to create local visual regression test baseline images
 - `npm test` to run tests
-- `npm start` to open a demo page for manual testing
+- `npm run dev` to open a demo page for manual testing
 - `npm run lint` to run linting checks
 - `npm run lint:fix` to fix linting issues
 - `npm run build` to build

@@ -3,7 +3,10 @@
   "version": "2.0.5",
   "description": "A small web component to enhance scrollable elements with dynamic scroll indicators.",
   "license": "MIT",
-  "repository": "ingmarh/scroll-shadow-element",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ingmarh/scroll-shadow-element.git"
+  },
   "author": "Ingmar Hergst",
   "type": "module",
   "exports": "./dist/index.js",
@@ -15,10 +18,10 @@
     "custom-elements.json"
   ],
   "scripts": {
-    "start": "web-dev-server --open demo/ --watch",
+    "dev": "web-dev-server --open demo/ --watch",
     "test": "BROWSERS=$([ $CI ] && echo 'chromium webkit firefox' || echo 'chromium firefox') && wtr test/*.test.js --playwright --browsers=$BROWSERS",
     "build": "tsup",
-    "lint": "eslint .",
+    "lint": "eslint",
     "lint:fix": "npm run lint -- --fix",
     "prepublishOnly": "npm run build"
   },
@@ -33,17 +36,20 @@
     "component"
   ],
   "devDependencies": {
-    "@open-wc/testing": "^3.1.7",
-    "@typescript-eslint/eslint-plugin": "^5.56.0",
-    "@typescript-eslint/parser": "^5.56.0",
-    "@web/dev-server": "^0.1.36",
-    "@web/dev-server-esbuild": "^0.3.4",
-    "@web/test-runner": "^0.15.1",
-    "@web/test-runner-playwright": "^0.9.0",
-    "@web/test-runner-visual-regression": "^0.7.0",
-    "esbuild-plugin-minify-html-literals": "^1.0.2",
-    "eslint": "^8.36.0",
-    "tsup": "^6.7.0",
-    "typescript": "^5.0.2"
+    "@eslint/js": "^9.15.0",
+    "@open-wc/testing": "^4.0.0",
+    "@stylistic/eslint-plugin": "^2.11.0",
+    "@total-typescript/tsconfig": "^1.0.4",
+    "@web/dev-server": "^0.4.6",
+    "@web/dev-server-esbuild": "^1.0.3",
+    "@web/test-runner": "^0.19.0",
+    "@web/test-runner-playwright": "^0.11.0",
+    "@web/test-runner-visual-regression": "^0.10.0",
+    "esbuild-plugin-minify-html-literals": "^2.0.1",
+    "eslint": "^9.15.0",
+    "globals": "^15.12.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.15.0"
   }
 }

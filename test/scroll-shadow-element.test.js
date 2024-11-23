@@ -82,7 +82,7 @@ describe('scroll shadow element', () => {
 						</tfoot>
 					</table>
 				</scroll-shadow>
-			`
+			`,
 		)
 
 		const el = rootEl.querySelector('tbody')
@@ -118,7 +118,7 @@ describe('scroll shadow element', () => {
 						</tbody>
 					</table>
 				</scroll-shadow>
-			`
+			`,
 		)
 
 		const el = rootEl.querySelector('table')

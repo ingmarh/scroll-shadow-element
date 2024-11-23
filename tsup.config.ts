@@ -5,7 +5,6 @@ export default defineConfig({
 	entry: ['src/index.ts'],
 	format: 'esm',
 	platform: 'browser',
-	target: 'es2020',
 	dts: true,
 	clean: true,
 	esbuildPlugins: [
@@ -13,7 +12,7 @@ export default defineConfig({
 		minifyHTMLLiteralsPlugin({
 			shouldMinify(template) {
 				return template.parts.some(
-					(part) => part.text.includes('<slot>') || part.text.includes('px;')
+					part => part.text.includes('<slot>') || part.text.includes('px;'),
 				)
 			},
 		}),

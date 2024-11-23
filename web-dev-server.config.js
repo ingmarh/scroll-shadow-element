@@ -11,7 +11,7 @@ export default {
 					return {
 						body: context.body.replace(
 							/(<script\s.*)src=".+?"\s(.*)data-dev-src="(.+?)"(.+?>)/g,
-							'$1src="$3"$2$4'
+							'$1src="$3"$2$4',
 						),
 					}
 				}

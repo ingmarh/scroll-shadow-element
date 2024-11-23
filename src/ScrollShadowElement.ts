@@ -55,7 +55,7 @@ class Updater {
 	private cb: () => void
 	private rO: ResizeObserver
 	private mO: MutationObserver
-	private el: HTMLElement
+	private el!: HTMLElement
 
 	constructor(targetElement: HTMLElement) {
 		this.cb = () => this.update(targetElement)
@@ -69,18 +69,20 @@ class Updater {
 			this.rO.disconnect()
 			this.mO.disconnect()
 		}
-		if (!element) return
-		if (
-			element.nodeName === 'TABLE' &&
-			!/scroll|auto/.test(getComputedStyle(element).getPropertyValue('overflow'))
-		) {
-			this.rO.observe(element)
-			element = (<HTMLTableElement>element).tBodies[0]
+
+		if (element) {
+			if (
+				element.nodeName === 'TABLE' &&
+				!/scroll|auto/.test(getComputedStyle(element).getPropertyValue('overflow'))
+			) {
+				this.rO.observe(element)
+				element = (<HTMLTableElement>element).tBodies[0]!
+			}
+			element.addEventListener('scroll', this.cb)
+			;[element, ...element.children].forEach(el => this.rO.observe(el))
+			this.mO.observe(element, { childList: true })
+			this.el = element
 		}
-		element.addEventListener('scroll', this.cb)
-		;[element, ...element.children].forEach(el => this.rO.observe(el))
-		this.mO.observe(element, { childList: true })
-		this.el = element
 	}
 
 	update(targetElement: HTMLElement) {

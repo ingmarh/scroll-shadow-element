@@ -8,7 +8,7 @@ export async function render(options = { horizontal: false, size: null }) {
 				--scroll-shadow-bottom: radial-gradient(farthest-side at 50% 100%, yellow, #0000);
 				--scroll-shadow-left: radial-gradient(farthest-side at 0%, yellow, #0000);
 				--scroll-shadow-right: radial-gradient(farthest-side at 100%, yellow, #0000);
-				${options.size ? '--scroll-shadow-size:'+options.size : ''}
+				${options.size ? '--scroll-shadow-size:' + options.size : ''}
 			">
 				<div style="width:400px;height:400px;padding:2em;overflow:auto">
 					<div style="width:${options.horizontal ? '800px' : 'auto'}">
@@ -73,9 +73,8 @@ export async function render(options = { horizontal: false, size: null }) {
 					</div>
 				</div>
 			</scroll-shadow>
-		`
+		`,
 	)
 
 	return { rootEl, el: rootEl.querySelector('div') }
 }
-

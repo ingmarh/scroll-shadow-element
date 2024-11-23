@@ -1,7 +1,6 @@
 {
+	"extends": "@total-typescript/tsconfig/tsc/dom/library",
 	"compilerOptions": {
-		"strictNullChecks": true,
-		"target": "es2020",
-		"moduleResolution": "nodenext"
+		"target": "es2020"
 	}
 }

@@ -2,7 +2,7 @@
 
 Please follow these basic guidelines:
 
-1. Test manually with `npm start`.
+1. Test manually with `npm run dev`.
 2. Run the [test suites](#visual-regression-tests).
 3. Follow the existing code style.
 
