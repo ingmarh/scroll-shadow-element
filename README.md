@@ -131,6 +131,15 @@ the shadows above the content and independent of the element’s background. If
 you don’t have these requirements, the pure CSS technique might work for you
 too.
 
+Since July 2023, it is possible to achieve the same with [CSS scroll-driven
+animations][scroll-driven-animations] (see also ["Proper" Scrolling
+Shadows][proper-scrolling-shadows] and [Scroll shadows with
+animation-timeline][scroll-shadows-with-animation-timeline]). At the time of
+writing, browser support for scroll-driven animations is limited: e.g. it won’t
+work in Safari and Firefox. With `<scroll-shadow>`, scroll indicators can be
+applied declaratively in all major browsers, and the web component might get
+updated in the future to use ScrollTimeline.
+
 ## Development
 
 - `npm install` to install dependencies
@@ -149,6 +158,9 @@ Distributed under the terms of the MIT license. See [LICENSE](LICENSE) for detai
 [resizeobserver]: https://caniuse.com/resizeobserver
 [css-math-functions]: https://caniuse.com/css-math-functions
 [pure-css-alternative]: https://lea.verou.me/2012/04/background-attachment-local/
+[scroll-driven-animations]: https://developer.mozilla.org/docs/Web/CSS/CSS_scroll-driven_animations
+[proper-scrolling-shadows]: https://kizu.dev/scroll-driven-animations/#proper-scrolling-shadows
+[scroll-shadows-with-animation-timeline]: https://daverupert.com/2023/08/animation-timeline-scroll-shadows/
 [jest-esm]: https://jestjs.io/docs/ecmascript-modules
 [jest-modulenamemapper]: https://jestjs.io/docs/configuration#modulenamemapper-objectstring-string--arraystring
 [jest-transform-stub]: https://www.npmjs.com/package/jest-transform-stub
