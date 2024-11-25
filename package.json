@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "dev": "web-dev-server --open demo/ --watch",
-    "test": "BROWSERS=$([ $CI ] && echo 'chromium webkit firefox' || echo 'chromium firefox') && wtr test/*.test.js --playwright --browsers=$BROWSERS",
+    "test": "web-test-runner test/*.test.js --playwright --browsers chromium firefox ${CI:+webkit}",
     "build": "tsup",
     "lint": "eslint",
     "lint:fix": "npm run lint -- --fix",
