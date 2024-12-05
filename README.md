@@ -6,7 +6,9 @@
 A small web component to enhance scrollable elements with dynamic scroll
 indicators.
 
-🔎 [See the demo][demo-href]
+- Easy to use: Just wrap your element with `<scroll-shadow>`
+- Customizable scroll indicators
+- [See the demo][demo-href] 🔎
 
 ## Installation
 
@@ -45,13 +47,12 @@ Wrap any element for dynamically added scroll indicators. For example:
 
 ```html
 <scroll-shadow>
-	<nav>Long navigation…</nav>
+  <nav>Long navigation…</nav>
 </scroll-shadow>
 ```
 
-> **Note**
-> When wrapping a non-scrollable `<table>` element, then its first `<tbody>`
-> will be used.
+**Note**: When wrapping a non-scrollable `<table>` element, then its first
+`<tbody>` will be used.
 
 ## Configuration
 
@@ -61,12 +62,12 @@ You can change the default appearance with CSS.
 
 ```css
 scroll-shadow {
-	display: inline-block;
-	--scroll-shadow-size: 14;
-	--scroll-shadow-top: radial-gradient(farthest-side at 50% 0%, #0003, #0000);
-	--scroll-shadow-bottom: radial-gradient(farthest-side at 50% 100%, #0003, #0000);
-	--scroll-shadow-left: radial-gradient(farthest-side at 0%, #0003, #0000);
-	--scroll-shadow-right: radial-gradient(farthest-side at 100%, #0003, #0000);
+  display: inline-block;
+  --scroll-shadow-size: 14;
+  --scroll-shadow-top: radial-gradient(farthest-side at 50% 0%, #0003, #0000);
+  --scroll-shadow-bottom: radial-gradient(farthest-side at 50% 100%, #0003, #0000);
+  --scroll-shadow-left: radial-gradient(farthest-side at 0%, #0003, #0000);
+  --scroll-shadow-right: radial-gradient(farthest-side at 100%, #0003, #0000);
 }
 ```
 
@@ -74,12 +75,12 @@ scroll-shadow {
 
 ```css
 @media (prefers-color-scheme: dark) {
-	scroll-shadow {
-		--scroll-shadow-top: radial-gradient(farthest-side at 50% 0%, #fff3, #0000);
-		--scroll-shadow-bottom: radial-gradient(farthest-side at 50% 100%, #fff3, #0000);
-		--scroll-shadow-left: radial-gradient(farthest-side at 0%, #fff3, #0000);
-		--scroll-shadow-right: radial-gradient(farthest-side at 100%, #fff3, #0000);
-	}
+  scroll-shadow {
+    --scroll-shadow-top: radial-gradient(farthest-side at 50% 0%, #fff3, #0000);
+    --scroll-shadow-bottom: radial-gradient(farthest-side at 50% 100%, #fff3, #0000);
+    --scroll-shadow-left: radial-gradient(farthest-side at 0%, #fff3, #0000);
+    --scroll-shadow-right: radial-gradient(farthest-side at 100%, #fff3, #0000);
+  }
 }
 ```
 
@@ -97,8 +98,9 @@ scroll-shadow {
 
 `scroll-shadow-element` works in all major browsers: all browsers that support
 [Custom Elements][custom-elementsv1], [Resize Observer][resizeobserver] and the
-[`min()` CSS function][css-math-functions]. In older browsers, the element just
-won’t add scroll indicators.
+[`min()` CSS function][css-math-functions] (Chrome/Edge 79+, Safari 13.1+, iOS
+Safari 13.4+, Firefox 75+). In older browsers, the element just won’t add
+scroll indicators.
 
 The package is written with ES6 syntax. If you need to support older browsers,
 you can configure your bundler to compile it to ES5 syntax.
@@ -107,11 +109,11 @@ you can configure your bundler to compile it to ES5 syntax.
 
 ```json
 {
-	"jest": {
-		"moduleNameMapper": {
-			"^scroll-shadow-element$": "jest-transform-stub"
-		}
-	}
+  "jest": {
+    "moduleNameMapper": {
+      "^scroll-shadow-element$": "jest-transform-stub"
+    }
+  }
 }
 ```
 
