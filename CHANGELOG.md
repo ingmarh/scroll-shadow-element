@@ -2,6 +2,11 @@
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.6] (December 5, 2024)
+
+### Added
+- JSX intrinsic element types for React 19, Preact and SolidJS ([see commit](https://github.com/ingmarh/scroll-shadow-element/commit/f16e347))
+
 ## [2.0.5] (March 28, 2023)
 
 ### Optimized
@@ -95,6 +100,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 Initial release
 
+[2.0.6]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v2.0.6
 [2.0.5]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v2.0.5
 [2.0.4]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v2.0.4
 [2.0.3]: https://github.com/ingmarh/scroll-shadow-element/releases/tag/v2.0.3
